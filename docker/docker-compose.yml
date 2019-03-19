@@ -1,0 +1,10 @@
+version: '2'
+services:
+  angular:
+    image: readmore_angular
+    container_name: readmore_angular
+    ports:
+      - "7000:4200"
+      
+    volumes:
+      - ../ng:/www/ng
