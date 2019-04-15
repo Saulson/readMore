@@ -8,3 +8,25 @@ services:
       
     volumes:
       - ../ng:/www/ng
+
+    links:
+      - api
+
+  api:
+    image: readmore_api
+    container_name: readmore_api
+    volumes:
+      - ../api:/www/api
+
+    links: 
+      - db
+
+  db:
+    image: mysql:8.0
+    container_name: readmore_db
+    environment:
+      - MYSQL_ROOT_PASSWORD=R43d3m0r3.#
+      - MYSQL_DATABASE=readmore
+      - MYSQL_USER=readmore
+      - MYSQL_PASSWORD=R43d3m0r3.#
+

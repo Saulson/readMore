@@ -15,3 +15,9 @@ docker build -t readmore_api ./docker/flask/
 #### Creating Container
 cd docker
 docker-compose up --no-start
+
+
+Access to database
+==================
+
+docker exec -ti  readmore_db mysql --password=R43d3m0r3.#
