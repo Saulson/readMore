@@ -22,11 +22,13 @@ services:
       - db
 
   db:
-    image: mysql:8.0
+    image: postgres:10
     container_name: readmore_db
+    volumes:
+    - ./db.sql:/docker-entrypoint-initdb.d/db.sql
+
     environment:
-      - MYSQL_ROOT_PASSWORD=R43d3m0r3.#
-      - MYSQL_DATABASE=readmore
-      - MYSQL_USER=readmore
-      - MYSQL_PASSWORD=R43d3m0r3.#
+      - POSTGRES_DB=readmore
+      - POSTGRES_USER=readmore
+      - POSTGRES_PASSWORD=R43d3m0r3.#
 
