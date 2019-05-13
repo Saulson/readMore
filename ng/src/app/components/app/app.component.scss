@@ -1,0 +1,18 @@
+@import "../../variables.scss";
+
+.title {
+    font-size: 40px;
+    background-color: $primary-color;
+    color: $secondary-color;
+}
+
+.dashboard {
+    background-color: $secondary-color;
+    color: white;
+    height: 100px;
+    font-size: 20px;
+}
+
+.dashboard .element:hover {
+    color: black;
+}

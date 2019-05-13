@@ -1,0 +1,27 @@
+<div class="container">
+  <div *ngIf="service.active" class="noti">
+    <div class="noti-content">
+      <div class="noti-header">
+        <div *ngIf="service.mode == 'message'">
+          {{service.title}}
+          <div (click)="service.close()" class="close">x</div>
+        </div>
+        <div *ngIf="service.mode == 'loader'">
+          Loading...
+        </div>
+      </div>
+
+      <div class="noti-body">
+          <div *ngIf="service.mode == 'message'">
+              {{service.message}}
+          </div>
+          <div *ngIf="service.mode == 'loader'">
+              <div class="progress">
+                  <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width:100%">
+                  </div>
+              </div>
+          </div>
+      </div>
+    </div>
+  </div>
+</div>
