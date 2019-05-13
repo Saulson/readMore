@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, HostListener } from '@angular/core';
 
 import { MessageService } from '../../services/message.service';
 
@@ -13,6 +13,13 @@ export class MessageComponent implements OnInit {
     private service: MessageService) { }
 
   ngOnInit() {
+  }
+
+  @HostListener('document:keyup', ['$event'])
+  handleKeyboardEvent(event: KeyboardEvent) { 
+    if(event.keyCode == 27) {
+      this.service.close();
+    }
   }
 
 }

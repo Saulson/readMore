@@ -1,1 +1,32 @@
 /* You can add global styles to this file, and also import other style files */
+@import "app/variables.scss";
+
+label {
+    background-color: $primary-color;
+    font-size: $font-size;
+    border-radius: 10px;
+}
+
+input {
+    border-radius: 10px;
+    background-color: #fff5cc;
+    border-style: none;
+    outline-style: none;
+}
+
+button {
+    border-radius: 10px;
+    background-color: $secondary-color;
+    border: none;
+    color: white;
+    font-size: $font-size;
+    cursor: pointer; cursor: hand;
+}
+
+button:hover {
+    background-color: $secondary-color-hover;
+}
+
+button:disabled {
+
+}

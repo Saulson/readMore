@@ -3,14 +3,12 @@ from psycopg2.extras import DictCursor
 
 from flask import current_app, g
 
-from types import MethodType
-
 
 def get_db():
     if 'db' not in g:
         g.db = psycopg2.connect(host='db', 
             database=current_app.config['DATABASE'],
-            user='readmore', password=current_app.config['SECRET_KEY'])
+            user='readmore', password=current_app.config['DATABASE_PASS'])
 
     return g.db
 

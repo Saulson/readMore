@@ -20,4 +20,4 @@ docker-compose up --no-start
 Access to database
 ==================
 
-docker exec -ti  readmore_db mysql --password=R43d3m0r3.#
+docker exec -ti readmore_db psql -U readmore

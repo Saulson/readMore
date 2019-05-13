@@ -1,5 +1,5 @@
 <div class="container">
-  <div *ngIf="service.active" class="noti">
+  <div *ngIf="service.active" class="noti" (click)="service.close()">
     <div class="noti-content">
       <div class="noti-header">
         <div *ngIf="service.mode == 'message'">

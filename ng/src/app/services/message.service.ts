@@ -12,8 +12,10 @@ export class MessageService {
 
   constructor() { }
 
-  close(): void {
-    this.active = false;
+  close(forceClose?: boolean): void {
+    if(forceClose || this.mode == 'message' && this.active){
+      this.active = false;  
+    }
   }
 
   showLoader(): void {

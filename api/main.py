@@ -6,7 +6,8 @@ import tools
 api = Flask(__name__)
 api.config.from_mapping(
     SECRET_KEY='R43d3m0r3.#',
-    DATABASE='readmore'
+    DATABASE='readmore',
+    DATABASE_PASS='R43d3m0r3.#'
 )
 
 api.register_blueprint(auth.bp)
