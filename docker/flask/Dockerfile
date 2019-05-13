@@ -2,7 +2,7 @@
 FROM python:stretch
 
 #Flask
-RUN pip3 install Flask mysql-connector-python gunicorn
+RUN pip3 install Flask psycopg2-binary psycopg2 gunicorn
 
 RUN mkdir /var/log/gunicorn/
 
