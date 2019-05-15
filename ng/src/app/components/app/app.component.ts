@@ -30,7 +30,7 @@ export class AppComponent implements OnInit {
     let reader = new FileReader();
     reader.onload = () => {
         var text = reader.result;
-        //btoa
+        miobj = btoa(text)
     }
     
     reader.readAsBinaryString(event.target.files[0]);

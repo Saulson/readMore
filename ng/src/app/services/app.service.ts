@@ -5,14 +5,14 @@ import { catchError, tap } from 'rxjs/operators';
 
 import { Request } from '../models/request';
 
-import { BaseService } from './base.service';
+import { BaseService, BASEURL } from './base.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AppService extends BaseService {
 
-  protected url = 'api/tool/';
+  protected url = BASEURL + 'tool/';
 
   getName(): Observable<Request> {
     this.message.showLoader();

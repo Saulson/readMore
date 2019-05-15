@@ -18,15 +18,15 @@ export class LoginComponent implements OnInit {
     private service: LoginService) { }
 
   ngOnInit() {
-    this.login = {user: null, password: ""}
+    this.login = {id: null, contrasena: ""}
   }
 
   submit(): void {
-    if(this.login.user == null) {
+    if(this.login.id == null) {
       this.message.showMessage("Error", "Usuario vacío");
       return;  
     }
-    if(this.login.password == "") {
+    if(this.login.contrasena == "") {
       this.message.showMessage("Error", "Contraseña vacía");
       return;
     }

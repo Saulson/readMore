@@ -1,5 +1,5 @@
 import psycopg2
-from psycopg2.extras import DictCursor
+from psycopg2.extras import RealDictCursor
 
 from flask import current_app, g
 
@@ -14,7 +14,7 @@ def get_db():
 
 def get_cursor():
     if 'cursor' not in g:
-        g.cursor = get_db().cursor(cursor_factory=DictCursor)
+        g.cursor = get_db().cursor(cursor_factory=RealDictCursor)
 
     return g.cursor
 

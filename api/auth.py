@@ -16,7 +16,7 @@ def login():
 
         try:
             cur.execute("""
-                SELECT id, contrasena FROM usuario WHERE id = %(user)s
+                SELECT id, contrasena FROM usuario WHERE id = %(id)s
             """, request.form)
         except psycopg2.Error as ex:
             data.update(error=ex.pgerror, status=400)
@@ -24,7 +24,7 @@ def login():
             user = cur.fetchone()
             if user is None:
                 data.update(error="Incorrect Username", status=400)
-            elif not check_password_hash(user['contrasena'], request.form['password']):
+            elif not check_password_hash(user['contrasena'], request.form['contrasena']):
                 data.update(error="Incorrect Password", status=400)
             else:
                 session.clear()

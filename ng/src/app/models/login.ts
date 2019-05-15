@@ -1,4 +1,4 @@
 export class Login {
-    user: String;
-    password: String;
+    id: String;
+    contrasena: String;
 }

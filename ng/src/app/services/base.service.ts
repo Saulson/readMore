@@ -10,6 +10,8 @@ export const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8' })
 };
 
+export const BASEURL = 'api/';
+
 @Injectable({
   providedIn: 'root'
 })
