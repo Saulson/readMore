@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { Location } from '@angular/common';
 
-import { Login } from '../../models/login';
+import { Usuario } from '../../models/usuario';
 
 import { MessageService } from '../../services/message.service';
-import { LoginService } from '../../services/login.service';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'login',
@@ -11,15 +12,14 @@ import { LoginService } from '../../services/login.service';
 })
 export class LoginComponent implements OnInit {
 
-  private login : Login;
+  private login : Usuario = {id: null, contrasena: "", id_persona: 0, id_grupo_permiso: 0};
 
   constructor(
+    private location: Location,
     private message: MessageService,
-    private service: LoginService) { }
+    private service: AuthService) { }
 
-  ngOnInit() {
-    this.login = {id: null, contrasena: ""}
-  }
+  ngOnInit() { }
 
   submit(): void {
     if(this.login.id == null) {
@@ -32,7 +32,8 @@ export class LoginComponent implements OnInit {
     }
 
     this.service.login(this.login).subscribe(data => {
-      //TODO redireccionar y calcular a que tiene accesso
+      this.location.go('/');
+      window.location.reload();
     });
   }
 

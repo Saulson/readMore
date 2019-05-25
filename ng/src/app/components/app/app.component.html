@@ -3,22 +3,32 @@
     <div class="col-sm-1 ">
       <img class="mx-auto d-block" width="100" alt="Logo" src="/api/tool/logo"/>
     </div>
-    <div class="col-sm-5 align-self-center text-center">
+    <div class="col-sm-4 align-self-center text-center">
       {{name}}
     </div>
-    <div class="col-sm-6 dashboard">
+    <div class="col-sm-7 dashboard">
       <div class="row h-100">
-        <div class="col-sm-2 align-self-center text-right element">
+        <div class="col-sm-4 align-self-center text-right element">
           Inicio
         </div>
-        <div class="col-sm-2 align-self-center text-right element">
+        <div class="col-sm-4 align-self-center text-right element">
           Consulta
         </div>
-        <div class="col-sm-2 align-self-center text-right element" routerLink="/login">
-          Ingresar
-        </div>
-        <div class="col-sm-2 align-self-center text-right element" routerLink="/editorial">
-          Editorial
+        <div class="col-sm-4 align-self-center text-right element">
+          <div ngbDropdown placement="bottom-right">
+            <button id="dropdownMenu" ngbDropdownToggle>Menu</button>
+            <div ngbDropdownMenu aria-labelledby="dropdownMenu" class="dashboard dropdown-menu">
+              <div *ngIf="menus == null">
+                <button routerLink="/login" ngbDropdownItem>Ingresar</button>
+              </div>
+              <div *ngIf="menus != null">
+                <div *ngFor="let menu of menus">
+                  <button routerLink="/{{menu.nombre}}">{{menu.nombre}}</button>
+                </div>
+                <button (click)="logout()">Salir</button>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>

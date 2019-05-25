@@ -32,7 +32,6 @@ export class BaseService {
       }
       else if(error.status == 401) {
         this.message.showMessage('Error', 'Operacion no autorizada');
-        //FIXME
         this.location.go("/");
         window.location.reload();
       }

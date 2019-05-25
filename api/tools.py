@@ -39,3 +39,38 @@ def name():
     response = make_response(jsonify(data), data['status'])
     response.headers.set('Content-Type', 'application/json; charset=UTF-8')
     return response
+
+@bp.route('/menu', methods=('GET',))
+def menu():
+    data = {}
+    cur = get_cursor()
+    user_id = session.get('user_id')
+    id_param = request.args.get('id')
+
+    try:
+        if not user_id or not id_param or str(user_id) != str(id_param):
+            raise Exception("")
+
+        cur.execute("""
+            SELECT DISTINCT(p.nombre) 
+            FROM permiso AS p, 
+            grupo_permiso_permiso_rel AS gpr, 
+            grupo_permiso AS g, 
+            usuario AS u 
+            WHERE p.id = gpr.id_permiso AND 
+            gpr.id_grupo_permiso = g.id AND 
+            g.id = u.id_grupo_permiso AND
+            p.mostrar = TRUE AND 
+            p.nombre NOT LIKE '%%_rel' AND
+            u.id = %s;
+        """, [id_param])
+    except psycopg2.Error as ex:
+        data.update(error=ex.pgerror, status=400)
+    except Exception as ex:
+        data.update(data=[], status=200)
+    else:
+        data.update(data=cur.fetchall(), status=200)
+
+    response = make_response(jsonify(data), data['status'])
+    response.headers.set('Content-Type', 'application/json; charset=UTF-8')
+    return response

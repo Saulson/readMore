@@ -1,17 +1,20 @@
 <div class="container-fluid text-center">
+  <div class="form">
     <div class="form-group p-1 m-3">
-        <label class="p-2 m-3">Nombre</label>
-        <input class="p-2 m-3" (keyup.enter)="submit()"
-            [(ngModel)]="editorial.nombre" autofocus/>
+      <label class="p-2 m-3">Nombre</label>
+      <input id="nombre" class="p-2 m-3" (keyup.enter)="submit()"
+          [(ngModel)]="editorial.nombre" autofocus/>
     </div>
     <div class="form-group p-1 m-3">
-        <button (click)="submit()">
-            <div *ngIf="editorial.id == null">
-                Crear
-            </div>
-            <div *ngIf="editorial.id != null">
-                Actualizar
-            </div>
-        </button>
+      <button (click)="submit()">
+        <div *ngIf="editorial.id == null">
+          Crear
+        </div>
+        <div *ngIf="editorial.id != null">
+          Actualizar
+        </div>
+      </button>
     </div>
+  </div>
+
 </div>

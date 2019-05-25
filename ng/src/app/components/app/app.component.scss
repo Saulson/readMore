@@ -1,7 +1,7 @@
 @import "../../variables.scss";
 
 .title {
-    font-size: 40px;
+    font-size: 30px;
     background-color: $primary-color;
     color: $secondary-color;
 }
@@ -14,4 +14,19 @@
 
 .dashboard .element:hover {
     color: black;
+}
+
+.dashboard button {
+    color: white;
+    font-size: 20px;
+}
+
+.dashboard button:hover {
+    background-color: $secondary-color;
+    color: black;
+}
+
+.dropdown-menu{
+    max-height: 200px; 
+    overflow-y: auto; 
 }

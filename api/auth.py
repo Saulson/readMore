@@ -35,11 +35,24 @@ def login():
     response.headers.set('Content-Type', 'application/json; charset=UTF-8')
     return response
 
+@bp.route('/usuario', methods=('GET',))
+def usuario():
+    data = {}
+
+    if 'user_id' in session:
+        data.update(data={'id': session['user_id']}, status=200)
+    else:
+        data.update(data=None, status=400)
+
+    response = make_response(jsonify(data), data.get('status', 400))
+    response.headers.set('Content-Type', 'application/json; charset=UTF-8')
+    return response
+
 @bp.route('/logout', methods=('GET',))
 def logout():
     session.clear()
 
-    response = make_response(None, 200)
+    response = make_response(jsonify(None), 200)
     response.headers.set('Content-Type', 'application/json; charset=UTF-8')
     return response
 
