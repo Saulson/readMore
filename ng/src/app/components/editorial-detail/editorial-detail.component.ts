@@ -14,6 +14,8 @@ import { MessageService } from '../../services/message.service';
 export class EditorialDetailComponent implements OnInit {
 
   private editorial: Editorial = {id: null, nombre: ""};
+  private subscription;
+  private form;
 
   constructor(
     private location: Location,
@@ -22,7 +24,7 @@ export class EditorialDetailComponent implements OnInit {
     private service: EditorialService) { }
 
   ngOnInit() {
-      this.getEditorial();
+    this.getEditorial();
   }
 
   private getEditorial(): void {
@@ -36,22 +38,45 @@ export class EditorialDetailComponent implements OnInit {
     }
   }
 
+  public back(): void {
+    this.location.back();
+  }
+
   public submit(): void {
+    if(!this.validateForm()) {
+      return;
+    }
     if(this.editorial.id == null) {
       this.service.createEditorial(this.editorial).subscribe(data => {
         if(data.status == 200) {
-          this.message.showMessage("Info", "Editorial Creada");
+          this.subscription = this.message.showMessage("Info", 
+            "Editorial Creada", true).subscribe( _ => this.location.back() );
         }
-        this.location.back();
       });
     }
     else {
       this.service.updateEditorial(this.editorial).subscribe(data => {
         if(data.status == 200) {
-          this.message.showMessage("Info", "Editorial Actualizada");
+          this.subscription = this.message.showMessage("Info", 
+            "Editorial Actualizada", true).subscribe( _ => this.location.back() );
         }
-        this.location.back();
       });
+    }
+    
+  }
+
+  private validateForm(): boolean {
+    if(this.editorial.nombre == "") {
+      this.message.showMessage("Error", "Nombre Vacío");
+      return false;
+    }
+
+    return true;
+  }
+
+  ngOnDestroy() {
+    if(this.subscription != undefined) {
+      this.subscription.unsubscribe();
     }
   }
 

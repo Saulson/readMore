@@ -1,12 +1,13 @@
 <div class="container-fluid text-center">
+  <button routerLink="/editorial-detail" class="m-4">Crear</button>
 
   <ul class="list-group mx-auto d-block w-75 p-2">
-    <li *ngFor="let editorial of editoriales" class="list-group-item d-flex justify-content-between align-items-center">
-      <div routerLink="/editorial-detail/{{editorial.id}}">{{editorial.nombre}}</div>
+    <li *ngFor="let editorial of editoriales" 
+      class="list-group-item d-flex justify-content-between align-items-center">
+      <div class="li" routerLink="/editorial-detail/{{editorial.id}}">{{editorial.nombre}}</div>
       <span (click)="delete(editorial)" class="badge badge-danger badge-pill">X</span>
     </li>
   </ul>
 
-  <button routerLink="/editorial-detail" class="m-4">Crear</button>
   
 </div>

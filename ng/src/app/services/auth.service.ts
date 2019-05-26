@@ -29,8 +29,7 @@ export class AuthService extends BaseService {
   getIDUsuario(): Observable<Request> {
     this.message.showLoader();
     return this.http.get<Request>(this.url + 'usuario').pipe(
-      tap(_ => this.message.close(true)),
-      catchError(this.handleError<Request>('login', {status: 400, data: null}))
+      tap(_ => this.message.close(true))
     );
   }
 

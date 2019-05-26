@@ -28,12 +28,14 @@ export class BaseService {
     return (error: any): Observable<T> => {
       this.message.close(true);
       if(error.status == 500) {
-        this.message.showMessage('Erro', 'Internal API Server Error');
+        this.message.showMessage('Error', 'Internal API Server Error');
       }
       else if(error.status == 401) {
-        this.message.showMessage('Error', 'Operacion no autorizada');
-        this.location.go("/");
-        window.location.reload();
+        this.message.showMessage('Error', 'Operacion no autorizada', 
+          true).subscribe(_ => {
+            this.location.go("/");
+            window.location.reload();
+        });
       }
       else {
         this.message.showMessage('Error', error.error.error);

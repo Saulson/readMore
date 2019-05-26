@@ -11,6 +11,7 @@ import { MessageComponent } from './components/message/message.component';
 import { LoginComponent } from './components/login/login.component';
 import { EditorialComponent } from './components/editorial/editorial.component';
 import { EditorialDetailComponent } from './components/editorial-detail/editorial-detail.component';
+import { IndexComponent } from './components/index/index.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { EditorialDetailComponent } from './components/editorial-detail/editoria
     MessageComponent,
     LoginComponent,
     EditorialComponent,
-    EditorialDetailComponent
+    EditorialDetailComponent,
+    IndexComponent
   ],
   imports: [
     AppRoutingModule,

@@ -3,11 +3,13 @@ import psycopg2
 from flask import Blueprint, current_app, jsonify, make_response, request
 
 from db import get_db, get_cursor
+from auth import session_check
 
 bp = Blueprint('editorial', __name__, url_prefix='/editorial')
 
 @bp.route('/', methods=('GET', 'PUT', 'PATCH', 'DELETE'))
 @bp.route('', methods=('GET', 'PUT', 'PATCH', 'DELETE'))
+@session_check
 def editorial():
     method = request.method
     data = {}

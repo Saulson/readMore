@@ -42,7 +42,7 @@ def usuario():
     if 'user_id' in session:
         data.update(data={'id': session['user_id']}, status=200)
     else:
-        data.update(data=None, status=400)
+        data.update(data=None, status=401)
 
     response = make_response(jsonify(data), data.get('status', 400))
     response.headers.set('Content-Type', 'application/json; charset=UTF-8')
@@ -70,8 +70,8 @@ def load_logged_in_user():
 def session_check(funct):
     @functools.wraps(funct)
     def wrapper(**kwargs):
-        if g.user is None:
-            response = make_response(None, 401)
+        if 'user_id' not in session:
+            response = make_response(jsonify(None), 401)
             response.headers.set('Content-Type', 'application/json; charset=UTF-8')
             return response
 

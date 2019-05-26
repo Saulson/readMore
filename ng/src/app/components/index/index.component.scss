@@ -1,0 +1,41 @@
+div {
+  text-align: justify;
+}
+
+.map-responsive{
+  overflow:hidden;
+  padding-bottom:50%;
+  position:relative;
+  height:0;
+}
+.map-responsive iframe{
+    left:0;
+    top:0;
+    height:100%;
+    width:100%;
+    position:absolute;
+}
+.heading { 
+  color: white;
+  background-image: url("../../../assets/img/open_books.jpg");
+  background-size: cover;
+}
+.titulo{
+  font-family: monospace;
+  color:#C5C5C5;
+}
+.subtitulo{
+  font-family: monospace;
+  color:#2B3E85;
+}
+.servicio img{
+  width: 100;
+  height: 100;
+}
+.barra{
+  background-color: #EAD224;
+  margin: 15px auto;
+}
+.nosotros{
+  background-color: #F3F3F3;
+}

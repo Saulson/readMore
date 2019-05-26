@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -6,15 +7,22 @@ import { Injectable } from '@angular/core';
 export class MessageService {
 
   private active: boolean = false;
+  private actionAfterClose: boolean = false;
   private mode: String = 'message';
   private title: String = '';
   private message: String = '';
+
+  private activeSubject = new Subject<boolean>();
 
   constructor() { }
 
   close(forceClose?: boolean): void {
     if(forceClose || this.mode == 'message' && this.active){
       this.active = false;  
+      if(this.actionAfterClose && !forceClose){
+        this.activeSubject.next(true);
+        this.actionAfterClose = false;
+      }
     }
   }
 
@@ -23,10 +31,15 @@ export class MessageService {
     this.mode = 'loader';
   }
 
-  showMessage(title: String, message:String): void {
+  showMessage(title: String, message:String, actionAfterClose?: boolean) {
     this.active = true;
     this.mode = 'message';
     this.title = title;
     this.message = message;
+
+    if(actionAfterClose) {
+      this.actionAfterClose = true;
+      return this.activeSubject.asObservable();
+    }
   }
 }
