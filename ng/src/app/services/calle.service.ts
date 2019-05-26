@@ -3,15 +3,15 @@ import { Observable } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
 
 import { Request } from '../models/request';
-import { Editorial } from '../models/editorial';
+import { Calle } from '../models/calle';
 
 import { BASEURL, BaseService, httpOptions } from './base.service';
 
 @Injectable({
   providedIn: 'root'
 })
-export class EditorialService extends BaseService {
+export class CalleService extends BaseService {
 
-  protected url = BASEURL + 'editorial';
-
+  protected url = BASEURL + 'calle';
+  
 }

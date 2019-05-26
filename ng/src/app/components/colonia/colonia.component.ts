@@ -45,7 +45,7 @@ export class ColoniaComponent implements OnInit {
   }
 
   private getEditoriales(): void {
-    this.service.getColonia(this.limit, this.page).subscribe(data => {
+    this.service.get(this.limit, this.page).subscribe(data => {
       if(data.status == 200) {
         this.colonias = data.data;
       }
@@ -53,7 +53,7 @@ export class ColoniaComponent implements OnInit {
   }
 
   public delete(colonia: Colonia):void {
-    this.service.deleteColonia(colonia.id).subscribe(data => {
+    this.service.delete(colonia.id).subscribe(data => {
       if(data.status == 200) {
         this.colonias = this.colonias.filter(e => e !== colonia);
         this.limit

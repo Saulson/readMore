@@ -14,20 +14,20 @@ export class AppService extends BaseService {
 
   protected url = BASEURL + 'tool/';
 
-  getName(): Observable<Request> {
+  public getName(): Observable<Request> {
     this.message.showLoader();
     return this.http.get<Request>(this.url + 'nombre')
     .pipe(
         tap(_ => this.message.close(true)),
-        catchError(this.handleError<Request>('getName', {status: 400, data: null}))
+        catchError(this.handleError<Request>({status: 400, data: null}))
       );
   }
 
-  getMenu(id_usuario: Number): Observable<Request> {
+  public getMenu(id_usuario: Number): Observable<Request> {
     this.message.showLoader();
     return this.http.get<Request>(this.url + 'menu?id=' + id_usuario).pipe(
       tap(_ => this.message.close(true)),
-      catchError(this.handleError<Request>('getMenu', {status: 400, data: null}))
+      catchError(this.handleError<Request>({status: 400, data: null}))
     );
   }
 

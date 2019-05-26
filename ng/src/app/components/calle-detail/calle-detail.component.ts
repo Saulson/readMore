@@ -2,25 +2,25 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 
-import { Colonia } from '../../models/colonia';
-import { ColoniaService } from '../../services/colonia.service';
+import { Calle } from '../../models/calle';
+import { CalleService } from '../../services/calle.service';
 import { MessageService } from '../../services/message.service';
 
 @Component({
-  selector: 'colonia-detail',
-  templateUrl: './colonia-detail.component.html',
-  styleUrls: ['./colonia-detail.component.scss']
+  selector: 'app-calle-detail',
+  templateUrl: './calle-detail.component.html',
+  styleUrls: ['./calle-detail.component.scss']
 })
-export class ColoniaDetailComponent implements OnInit {
+export class CalleDetailComponent implements OnInit {
 
-  private colonia: Colonia = {id: null, nombre: ""}
+  private calle: Calle = {id: null, nombre: ""}
   private subscription;
 
   constructor(
     private location: Location,
     private message: MessageService,
     private route: ActivatedRoute,
-    private service: ColoniaService) { }
+    private service: CalleService) { }
 
   ngOnInit() {
     this.getColonia();
@@ -32,12 +32,12 @@ export class ColoniaDetailComponent implements OnInit {
     if(id) {
       this.service.getByID(id).subscribe(data => {
         if(data.status == 200 && data.data.length != 0) {
-          this.colonia = data.data[0];
+          this.calle = data.data[0];
         }
         else {
           //FIXME no se aprecia el mensaje porque se carga primero el menu 
           this.subscription = this.message.showMessage("Error", 
-          "La colonia con el id " + id + " no existe", 
+          "La calle con el id " + id + " no existe", 
           true).subscribe(_ => this.location.back() );
         }
       });
@@ -52,26 +52,26 @@ export class ColoniaDetailComponent implements OnInit {
     if(!this.validateForm()) {
       return;
     }
-    if(this.colonia.id == null) {
-      this.service.create(this.colonia).subscribe(data => {
+    if(this.calle.id == null) {
+      this.service.create(this.calle).subscribe(data => {
         if(data.status == 200) {
           this.subscription = this.message.showMessage("Info", 
-            "Colonia Creada", true).subscribe( _ => this.location.back() );
+            "Calle Creada", true).subscribe( _ => this.location.back() );
         }
       });
     }
     else {
-      this.service.update(this.colonia).subscribe(data => {
+      this.service.update(this.calle).subscribe(data => {
         if(data.status == 200) {
           this.subscription = this.message.showMessage("Info", 
-            "Colonia Actualizada", true).subscribe( _ => this.location.back() );
+            "Calle Actualizada", true).subscribe( _ => this.location.back() );
         }
       });
     } 
   }
 
   private validateForm(): boolean {
-    if(this.colonia.nombre == "") {
+    if(this.calle.nombre == "") {
       this.message.showMessage("Error", "Nombre Vacío");
       return false;
     }
@@ -84,6 +84,5 @@ export class ColoniaDetailComponent implements OnInit {
       this.subscription.unsubscribe();
     }
   }
-
 
 }

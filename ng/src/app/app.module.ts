@@ -14,6 +14,8 @@ import { EditorialDetailComponent } from './components/editorial-detail/editoria
 import { IndexComponent } from './components/index/index.component';
 import { ColoniaComponent } from './components/colonia/colonia.component';
 import { ColoniaDetailComponent } from './components/colonia-detail/colonia-detail.component';
+import { CalleComponent } from './components/calle/calle.component';
+import { CalleDetailComponent } from './components/calle-detail/calle-detail.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +26,9 @@ import { ColoniaDetailComponent } from './components/colonia-detail/colonia-deta
     EditorialDetailComponent,
     IndexComponent,
     ColoniaComponent,
-    ColoniaDetailComponent
+    ColoniaDetailComponent,
+    CalleComponent,
+    CalleDetailComponent
   ],
   imports: [
     AppRoutingModule,

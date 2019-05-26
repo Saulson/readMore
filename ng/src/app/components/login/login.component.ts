@@ -31,7 +31,7 @@ export class LoginComponent implements OnInit {
       return;
     }
 
-    this.service.login(this.login).subscribe(data => {
+    this.service.login(this.login).subscribe(_ => {
       this.location.go('/');
       window.location.reload();
     });

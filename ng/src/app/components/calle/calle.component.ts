@@ -1,24 +1,24 @@
 import { Component, OnInit } from '@angular/core';
 
-import { Editorial } from '../../models/editorial';
+import { Calle } from '../../models/calle';
 
 import { MessageService } from '../../services/message.service';
-import { EditorialService } from '../../services/editorial.service';
+import { CalleService } from '../../services/calle.service';
 
 @Component({
-  selector: 'editorial',
-  templateUrl: './editorial.component.html',
-  styleUrls: ['./editorial.component.scss']
+  selector: 'calle',
+  templateUrl: './calle.component.html',
+  styleUrls: ['./calle.component.scss']
 })
-export class EditorialComponent implements OnInit {
+export class CalleComponent implements OnInit {
 
-  private editoriales: Editorial[];
+  private calles: Calle[];
   private totalItems: number;
   private limit: number;
   private page: number;
   private previousPage: number;
 
-  constructor(private service: EditorialService) { }
+  constructor(private service: CalleService) { }
 
   ngOnInit() {
     this.initPagination();
@@ -32,7 +32,7 @@ export class EditorialComponent implements OnInit {
     this.service.getNumRecord().subscribe(data => {
       if(data.status == 200) {
         this.totalItems = data.data.count;
-        this.getEditoriales();
+        this.getCalles();
       }
     })
   }
@@ -40,22 +40,23 @@ export class EditorialComponent implements OnInit {
   public changePage(page: number) {
     if(page !== this.previousPage) {
       this.previousPage = page;
-      this.getEditoriales();
+      this.getCalles();
     }
   }
 
-  private getEditoriales(): void {
+  private getCalles(): void {
     this.service.get(this.limit, this.page).subscribe(data => {
       if(data.status == 200) {
-        this.editoriales = data.data;
+        this.calles = data.data;
       }
     });
   }
 
-  public delete(editorial: Editorial):void {
-    this.service.delete(editorial.id).subscribe(data => {
+  public delete(calle: Calle):void {
+    this.service.delete(calle.id).subscribe(data => {
       if(data.status == 200) {
-        this.editoriales = this.editoriales.filter(e => e !== editorial);
+        this.calles = this.calles.filter(e => e !== calle);
+        this.limit
       }
     });
   }

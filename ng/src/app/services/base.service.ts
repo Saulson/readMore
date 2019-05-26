@@ -30,11 +30,56 @@ export class BaseService {
 
     return this.http.get<Request>(this.url + "/num").pipe(
       tap(_ => this.message.close(true)),
-      catchError(this.handleError('getNumRecord', {data: null, status: 400}))
+      catchError(this.handleError<Request>({data: null, status: 400}))
     );
   }
 
-  protected handleError<T>(operation = 'operation', result?: T) {
+  public get(limit: number, page: number): Observable<Request> {
+    this.message.showLoader();
+
+    return this.http.get<Request>(this.url + this.toGETRequest(limit, page)).pipe(
+      tap(_ => this.message.close(true)),
+      catchError(this.handleError<Request>({data: null, status: 400}))
+    );
+  }
+
+  public getByID(id: String): Observable<Request> {
+    this.message.showLoader();
+
+    return this.http.get<Request>(this.url + "?id=" + id).pipe(
+      tap(_ => this.message.close(true)),
+      catchError(this.handleError<Request>({data: null, status: 400}))
+    );
+  }
+
+  public create(calle: any): Observable<Request> {
+    this.message.showLoader();
+
+    return this.http.put<Request>(this.url, this.toPOSTRequest(calle), httpOptions).pipe(
+      tap(_ => this.message.close(true)),
+      catchError(this.handleError<Request>({data: null, status: 400}))
+    );
+  }
+
+  public update(calle: any): Observable<Request> {
+    this.message.showLoader();
+
+    return this.http.patch<Request>(this.url, this.toPOSTRequest(calle), httpOptions).pipe(
+      tap(_ => this.message.close(true)),
+      catchError(this.handleError<Request>({data: null, status: 400}))
+    );
+  }
+
+  public delete(id: String): Observable<Request> {
+    this.message.showLoader();
+
+    return this.http.delete<Request>(this.url + "?id=" + id).pipe(
+      tap(_ => this.message.close(true)),
+      catchError(this.handleError<Request>({data: null, status: 400}))
+    );
+  }
+
+  protected handleError<T>(result?: T) {
     return (error: any): Observable<T> => {
       this.message.close(true);
       if(error.status == 500) {
@@ -52,7 +97,7 @@ export class BaseService {
       }
 
       return of(result as T);
-    }
+    };
   }
 
   protected toPOSTRequest(obj: any): String {

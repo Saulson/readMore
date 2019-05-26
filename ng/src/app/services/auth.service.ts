@@ -14,19 +14,19 @@ export class AuthService extends BaseService {
 
   protected url = BASEURL + 'auth/';
 
-  login(usuario: Usuario): Observable<Request> {
+  public login(usuario: Usuario): Observable<Request> {
     this.message.showLoader();
     return this.http.post<Request>(this.url + 'login', this.toPOSTRequest(usuario), httpOptions).pipe(
       tap(_ => this.message.close(true)),
-      catchError(this.handleError<Request>('login', {status: 400, data: null}))
+      catchError(this.handleError<Request>({status: 400, data: null}))
     );
   }
 
-  logout(): Observable<Request> {
-    return this.http.get<Request>(this.url + 'logout')
+  public logout(): Observable<Request> {
+    return this.http.get<Request>(this.url + 'logout');
   }
 
-  getIDUsuario(): Observable<Request> {
+  public getIDUsuario(): Observable<Request> {
     this.message.showLoader();
     return this.http.get<Request>(this.url + 'usuario').pipe(
       tap(_ => this.message.close(true))

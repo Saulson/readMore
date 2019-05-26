@@ -30,7 +30,7 @@ export class EditorialDetailComponent implements OnInit {
     const id: String = this.route.snapshot.paramMap.get('id');
 
     if(id) {  
-      this.service.getEditorialByID(id).subscribe(data => {
+      this.service.getByID(id).subscribe(data => {
         if(data.status == 200 && data.data.length != 0) {
           this.editorial = data.data[0];
         }
@@ -53,7 +53,7 @@ export class EditorialDetailComponent implements OnInit {
       return;
     }
     if(this.editorial.id == null) {
-      this.service.createEditorial(this.editorial).subscribe(data => {
+      this.service.create(this.editorial).subscribe(data => {
         if(data.status == 200) {
           this.subscription = this.message.showMessage("Info", 
             "Editorial Creada", true).subscribe( _ => this.location.back() );
@@ -61,7 +61,7 @@ export class EditorialDetailComponent implements OnInit {
       });
     }
     else {
-      this.service.updateEditorial(this.editorial).subscribe(data => {
+      this.service.update(this.editorial).subscribe(data => {
         if(data.status == 200) {
           this.subscription = this.message.showMessage("Info", 
             "Editorial Actualizada", true).subscribe( _ => this.location.back() );

@@ -1,6 +1,7 @@
 from flask import Flask
 
 import auth
+import calle
 import colonia
 import editorial
 import tools
@@ -13,6 +14,7 @@ api.config.from_mapping(
 )
 
 api.register_blueprint(auth.bp)
+api.register_blueprint(calle.bp)
 api.register_blueprint(colonia.bp)
 api.register_blueprint(editorial.bp)
 api.register_blueprint(tools.bp)
