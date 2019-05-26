@@ -2,42 +2,42 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 
-import { Editorial } from '../../models/editorial';
-import { EditorialService } from '../../services/editorial.service';
+import { Colonia } from '../../models/colonia';
+import { ColoniaService } from '../../services/colonia.service';
 import { MessageService } from '../../services/message.service';
 
 @Component({
-  selector: 'editorial-detail',
-  templateUrl: './editorial-detail.component.html',
-  styleUrls: ['./editorial-detail.component.scss']
+  selector: 'colonia-detail',
+  templateUrl: './colonia-detail.component.html',
+  styleUrls: ['./colonia-detail.component.scss']
 })
-export class EditorialDetailComponent implements OnInit {
+export class ColoniaDetailComponent implements OnInit {
 
-  private editorial: Editorial = {id: null, nombre: ""};
+  private colonia: Colonia = {id: null, nombre: ""}
   private subscription;
 
   constructor(
     private location: Location,
     private message: MessageService,
-    private route: ActivatedRoute, 
-    private service: EditorialService) { }
+    private route: ActivatedRoute,
+    private service: ColoniaService) { }
 
   ngOnInit() {
-    this.getEditorial();
+    this.getColonia();
   }
 
-  private getEditorial(): void {
+  private getColonia(): void {
     const id: String = this.route.snapshot.paramMap.get('id');
 
-    if(id) {  
-      this.service.getEditorialByID(id).subscribe(data => {
+    if(id) {
+      this.service.getColoniaByID(id).subscribe(data => {
         if(data.status == 200 && data.data.length != 0) {
-          this.editorial = data.data[0];
+          this.colonia = data.data[0];
         }
         else {
           //FIXME no se aprecia el mensaje porque se carga primero el menu 
           this.subscription = this.message.showMessage("Error", 
-          "La editorial con el id " + id + " no existe", 
+          "La colonia con el id " + id + " no existe", 
           true).subscribe(_ => this.location.back() );
         }
       });
@@ -52,27 +52,26 @@ export class EditorialDetailComponent implements OnInit {
     if(!this.validateForm()) {
       return;
     }
-    if(this.editorial.id == null) {
-      this.service.createEditorial(this.editorial).subscribe(data => {
+    if(this.colonia.id == null) {
+      this.service.createColonia(this.colonia).subscribe(data => {
         if(data.status == 200) {
           this.subscription = this.message.showMessage("Info", 
-            "Editorial Creada", true).subscribe( _ => this.location.back() );
+            "Colonia Creada", true).subscribe( _ => this.location.back() );
         }
       });
     }
     else {
-      this.service.updateEditorial(this.editorial).subscribe(data => {
+      this.service.updateColonia(this.colonia).subscribe(data => {
         if(data.status == 200) {
           this.subscription = this.message.showMessage("Info", 
-            "Editorial Actualizada", true).subscribe( _ => this.location.back() );
+            "Colonia Actualizada", true).subscribe( _ => this.location.back() );
         }
       });
-    }
-    
+    } 
   }
 
   private validateForm(): boolean {
-    if(this.editorial.nombre == "") {
+    if(this.colonia.nombre == "") {
       this.message.showMessage("Error", "Nombre Vacío");
       return false;
     }
@@ -85,5 +84,6 @@ export class EditorialDetailComponent implements OnInit {
       this.subscription.unsubscribe();
     }
   }
+
 
 }

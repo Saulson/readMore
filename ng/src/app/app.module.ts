@@ -12,6 +12,8 @@ import { LoginComponent } from './components/login/login.component';
 import { EditorialComponent } from './components/editorial/editorial.component';
 import { EditorialDetailComponent } from './components/editorial-detail/editorial-detail.component';
 import { IndexComponent } from './components/index/index.component';
+import { ColoniaComponent } from './components/colonia/colonia.component';
+import { ColoniaDetailComponent } from './components/colonia-detail/colonia-detail.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +22,9 @@ import { IndexComponent } from './components/index/index.component';
     LoginComponent,
     EditorialComponent,
     EditorialDetailComponent,
-    IndexComponent
+    IndexComponent,
+    ColoniaComponent,
+    ColoniaDetailComponent
   ],
   imports: [
     AppRoutingModule,
