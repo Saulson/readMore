@@ -1,5 +1,3 @@
-import psycopg2
-
 from flask import Blueprint, jsonify, make_response, request
 
 from db import get_db
