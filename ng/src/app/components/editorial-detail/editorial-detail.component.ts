@@ -15,7 +15,6 @@ export class EditorialDetailComponent implements OnInit {
 
   private editorial: Editorial = {id: null, nombre: ""};
   private subscription;
-  private form;
 
   constructor(
     private location: Location,
@@ -31,8 +30,14 @@ export class EditorialDetailComponent implements OnInit {
     const id: String = this.route.snapshot.paramMap.get('id');
     if(id) {  
       this.service.getEditorialByID(id).subscribe(data => {
-        if(data.status == 200 && data.data[0] != undefined) {
+        if(data.status == 200 && data.data.length != 0) {
           this.editorial = data.data[0];
+        }
+        else {
+          //FIXME no se aprecia el mensaje porque se carga primero el menu 
+          this.subscription = this.message.showMessage("Error", 
+          "El registro con el id " + id + " no existe", 
+          true).subscribe(_ => this.location.back() );
         }
       });
     }

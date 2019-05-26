@@ -16,10 +16,11 @@ export class MessageService {
 
   constructor() { }
 
-  close(forceClose?: boolean): void {
+  close(forceClose: boolean = false): void {
     if(forceClose || this.mode == 'message' && this.active){
       this.active = false;  
-      if(this.actionAfterClose && !forceClose){
+
+      if(this.actionAfterClose){
         this.activeSubject.next(true);
         this.actionAfterClose = false;
       }
@@ -31,14 +32,14 @@ export class MessageService {
     this.mode = 'loader';
   }
 
-  showMessage(title: String, message:String, actionAfterClose?: boolean) {
+  showMessage(title: String, message:String, actionAfterClose: boolean = false) {
     this.active = true;
     this.mode = 'message';
     this.title = title;
     this.message = message;
 
     if(actionAfterClose) {
-      this.actionAfterClose = true;
+      this.actionAfterClose = actionAfterClose;
       return this.activeSubject.asObservable();
     }
   }
