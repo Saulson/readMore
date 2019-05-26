@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Location } from '@angular/common';
-
 import { Observable, of } from 'rxjs';
+import { catchError, tap } from 'rxjs/operators';
 
+import { Request } from '../models/request';
 import { MessageService } from './message.service';
 
 export const httpOptions = {
@@ -23,6 +24,15 @@ export class BaseService {
     protected http: HttpClient,
     protected message: MessageService,
     private location: Location) { }
+
+  public getNumRecord() {
+    this.message.showLoader();
+
+    return this.http.get<Request>(this.url + "/num").pipe(
+      tap(_ => this.message.close(true)),
+      catchError(this.handleError('getNumRecord', {data: null, status: 400}))
+    );
+  }
 
   protected handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
@@ -48,10 +58,23 @@ export class BaseService {
   protected toPOSTRequest(obj: any): String {
     var res = "";
 
-    for (var key in obj){
+    for(var key in obj){
       res += key + "=" + obj[key] + "&";
     }
 
     return res;
+  }
+
+  protected toGETRequest(limit: number, page: number, params?: any): String {
+    var res = "?";
+    var offset = (page - 1) * limit;
+
+    res += "limit=" + limit + "&offset=" + offset + "&";
+
+    for(var key in params) {
+      res += key + "=" + params[key] + "&";
+    }
+
+     return res;
   }
 }

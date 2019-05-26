@@ -12,23 +12,47 @@ import { EditorialService } from '../../services/editorial.service';
 })
 export class EditorialComponent implements OnInit {
 
-  editoriales: Editorial[];
+  private editoriales: Editorial[];
+  private totalItems: number;
+  private limit: number;
+  private page: number;
+  private previousPage: number;
 
   constructor(private service: EditorialService) { }
 
   ngOnInit() {
-    this.getEditoriales();
+    this.initPagination();
+  }
+
+  private initPagination(): void {
+    this.totalItems = 0;
+    this.page = this.previousPage = 1;
+    this.limit = 20;
+
+    this.service.getNumRecord().subscribe(data => {
+      if(data.status == 200) {
+        this.totalItems = data.data.count;
+        this.getEditoriales();
+      }
+    })
+  }
+
+  public changePage(page: number) {
+    if(page !== this.previousPage) {
+      this.previousPage = page;
+      this.getEditoriales();
+    }
   }
 
   private getEditoriales(): void {
-    this.service.getEditorial().subscribe(data => {
+    this.service.getEditorial(this.limit, this.page).subscribe(data => {
       if(data.status == 200) {
         this.editoriales = data.data;
       }
     });
   }
 
-  delete(editorial: Editorial){
+  public delete(editorial: Editorial):void {
     this.service.deleteEditorial(editorial.id).subscribe(data => {
       if(data.status == 200) {
         this.editoriales = this.editoriales.filter(e => e !== editorial);

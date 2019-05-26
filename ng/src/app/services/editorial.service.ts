@@ -14,10 +14,10 @@ export class EditorialService extends BaseService {
 
   protected url = BASEURL + 'editorial';
 
-  public getEditorial(): Observable<Request> {
+  public getEditorial(limit: number, page: number): Observable<Request> {
     this.message.showLoader();
 
-    return this.http.get<Request>(this.url).pipe(
+    return this.http.get<Request>(this.url + this.toGETRequest(limit, page)).pipe(
       tap(_ => this.message.close(true)),
       catchError(this.handleError('getEditorial', {data: null, status: 400}))
     );

@@ -7,6 +7,27 @@ from auth import session_check
 
 bp = Blueprint('editorial', __name__, url_prefix='/editorial')
 
+@bp.route('/num', methods=('GET',))
+@session_check
+def count():
+    data = {}
+    cur = get_cursor()
+    query = "SELECT COUNT(*) FROM editorial"
+
+    try:
+        cur.execute(query)
+    except pgerror as ex:
+        data.update(error=ex.error, status=400)
+    else:
+        data.update(data=cur.fetchone(), status=200)
+
+    response = make_response(jsonify(data), data.get('status', 400))
+    response.headers.set('Content-Type', 'application/json; charset=UTF-8')
+
+    return response
+
+
+
 @bp.route('/', methods=('GET', 'PUT', 'PATCH', 'DELETE'))
 @bp.route('', methods=('GET', 'PUT', 'PATCH', 'DELETE'))
 @session_check
@@ -37,17 +58,33 @@ def editorial():
 def get():
     data = {}
     cur = get_cursor()
+    args = dict(request.args)
     query = "SELECT * FROM editorial "
-    if request.args:
-        query += "WHERE "
-        for key in request.args:
-            query += key + " = %(" + key + ")s AND "
+    if args:
+        keys = list(args)
+        if 'limit' in keys:
+            keys.remove('limit')
 
-        query = query[:-4]
+        if 'offset' in keys:
+            keys.remove('offset')
+
+        if keys:
+            query += "WHERE "
+            for key in keys:
+                    query += key + " = %(" + key + ")s AND "
+
+            query = query[:-4]
+
+        if 'limit' in args:
+            args['limit'] = int(args['limit'])
+            query += "LIMIT %(limit)s "
+
+        if  'offset' in args:
+            args['offset'] = int(args['offset'])
+            query += "OFFSET %(offset)s "
 
     try:
-
-        cur.execute(query, request.args)
+        cur.execute(query, args)
     except psycopg2.Error as ex:
         data.update(error=ex.pgerror, status=400)
     else:

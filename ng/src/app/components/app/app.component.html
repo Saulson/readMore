@@ -15,7 +15,7 @@
           Consulta
         </div>
         <div class="col-sm-4 align-self-center text-right element">
-          <div ngbDropdown placement="bottom-right">
+          <div ngbDropdown placement="bottom-right" [autoClose]="true">
             <button id="dropdownMenu" ngbDropdownToggle>Menu</button>
             <div ngbDropdownMenu aria-labelledby="dropdownMenu" class="dashboard dropdown-menu">
               <div *ngIf="menus == null">
@@ -23,9 +23,9 @@
               </div>
               <div *ngIf="menus != null">
                 <div *ngFor="let menu of menus">
-                  <button routerLink="/{{menu.nombre}}">{{menu.nombre}}</button>
+                  <button routerLink="/{{menu.nombre}}" ngbDropdownItem>{{menu.nombre}}</button>
                 </div>
-                <button (click)="logout()">Salir</button>
+                <button (click)="logout()" ngbDropdownItem>Salir</button>
               </div>
             </div>
           </div>

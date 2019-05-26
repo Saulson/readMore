@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule }  from '@angular/common/http';
-import { NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbDropdownModule, NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { AppRoutingModule } from './app-routing.module';
 
@@ -27,7 +27,8 @@ import { IndexComponent } from './components/index/index.component';
     BrowserModule,
     FormsModule,
     HttpClientModule,
-    NgbDropdownModule
+    NgbDropdownModule,
+    NgbPaginationModule
   ],
   providers: [],
   bootstrap: [AppComponent]
