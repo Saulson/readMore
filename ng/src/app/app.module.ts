@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule }  from '@angular/common/http';
-import { NgbDropdownModule, NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbDropdownModule, NgbPaginationModule, NgbTypeaheadModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { AppRoutingModule } from './app-routing.module';
 
@@ -28,6 +28,7 @@ import { EstadoComponent } from './components/estado/estado.component';
 import { EstadoDetailComponent } from './components/estado-detail/estado-detail.component';
 import { PermisoComponent } from './components/permiso/permiso.component';
 import { PermisoDetailComponent } from './components/permiso-detail/permiso-detail.component';
+import { ConfiguracionComponent } from './components/configuracion/configuracion.component';
 
 @NgModule({
   declarations: [
@@ -52,7 +53,8 @@ import { PermisoDetailComponent } from './components/permiso-detail/permiso-deta
     EstadoComponent,
     EstadoDetailComponent,
     PermisoComponent,
-    PermisoDetailComponent
+    PermisoDetailComponent,
+    ConfiguracionComponent
   ],
   imports: [
     AppRoutingModule,

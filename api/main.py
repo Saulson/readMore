@@ -5,6 +5,7 @@ import autor
 import calle
 import categoria
 import colonia
+import configuracion
 import editorial
 import estado
 import grupo_permiso
@@ -24,6 +25,7 @@ api.register_blueprint(autor.bp)
 api.register_blueprint(calle.bp)
 api.register_blueprint(categoria.bp)
 api.register_blueprint(colonia.bp)
+api.register_blueprint(configuracion.bp)
 api.register_blueprint(editorial.bp)
 api.register_blueprint(estado.bp)
 api.register_blueprint(grupo_permiso.bp)

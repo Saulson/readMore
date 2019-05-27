@@ -13,6 +13,8 @@ import { CategoriaDetailComponent } from './components/categoria-detail/categori
 import { ColoniaComponent } from './components/colonia/colonia.component'
 import { ColoniaDetailComponent } from './components/colonia-detail/colonia-detail.component';
 
+import { ConfiguracionComponent } from './components/configuracion/configuracion.component';
+
 import { EditorialComponent } from './components/editorial/editorial.component';
 import { EditorialDetailComponent } from './components/editorial-detail/editorial-detail.component';
 
@@ -49,6 +51,8 @@ const routes: Routes = [
   { path: 'colonia', component: ColoniaComponent },
   { path: 'colonia-detail/:id', component: ColoniaDetailComponent },
   { path: 'colonia-detail', component: ColoniaDetailComponent },
+
+  { path: 'configuracion', component: ConfiguracionComponent },
 
   { path: 'editorial', component: EditorialComponent },
   { path: 'editorial-detail/:id', component: EditorialDetailComponent },

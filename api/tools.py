@@ -84,7 +84,6 @@ def menu():
 @session_check
 def img(model, field, res_id):
     data = {}
-
     cur = get_cursor()
 
     query = "SELECT %s FROM %s " % (field, model)
@@ -107,3 +106,27 @@ def img(model, field, res_id):
         response.headers.set('Content-Type', 'application/json; charset=UTF-8')
 
     return response
+
+@bp.route('tables', methods=('GET',))
+@session_check
+def tables():
+    data = {}
+    cur = get_cursor()
+
+    query = """SELECT table_name AS table
+        FROM information_schema.tables
+        WHERE table_type='BASE TABLE'
+        AND table_schema='public'"""
+
+    try:
+        cur.execute(query)
+    except psycopg2.Error as ex:
+        data.update(error=ex.pgerror, status=400)
+    else:
+        data.update(data=[row['table'] for row in cur.fetchall()], status=200)
+
+    response = make_response(jsonify(data), data.get('status', 400))
+    response.headers.set('Content-Type', 'application/json; charset=UTF-8')
+
+    return response
+

@@ -1,0 +1,38 @@
+<div class="container-fluid text-center">
+  <div class="form">
+    <div class="form-group p-1 m-3">
+      <label class="p-2 m-3">Nombre</label>
+      <input id="nombre" class="p-2 m-3" (keyup.enter)="submit()"
+          [(ngModel)]="config.nombre" autofocus/>
+    </div>
+
+    <div class="form-group p-1 m-3">
+      <label class="p-2 m-3">Logo</label>
+      <img class="p-2 m-3" width="100" heigth="100" src="/api/tool/logo"/>
+    </div>
+
+    <div class="form-group p-1 m-3">
+      <input type='file' accept="image/jpeg,image/jpg,image/png" (change)='openFile($event)'/>
+    </div>
+    
+    <div class="form-group p-1 m-3">
+      <label class="p-2 m-3">Máximo de Prestamos</label>
+      <input id="max_prestamos" class="p-2 m-3" (keyup.enter)="submit()"
+          [(ngModel)]="config.max_prestamos" autofocus/>
+    </div>
+    
+    <div class="form-group p-1 m-3">
+      <label class="p-2 m-3">Tiempo de Prestamo</label>
+      <input id="tiempo_prestamos" class="p-2 m-3" (keyup.enter)="submit()"
+          [(ngModel)]="config.tiempo_prestamos" autofocus/>
+    </div>
+    
+    <div class="form-group p-1 m-3">
+      <button (click)="back()">Atrás</button>
+      <button (click)="submit()">
+        Actualizar
+      </button>
+    </div>
+  </div>
+
+</div>
