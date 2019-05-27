@@ -2,42 +2,43 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 
-import { Calle } from '../../models/calle';
-import { CalleService } from '../../services/calle.service';
+import { GrupoPermiso } from '../../models/grupo-permiso';
+import { GrupoPermisoService } from '../../services/grupo-permiso.service';
 import { MessageService } from '../../services/message.service';
 
-@Component({
-  selector: 'calle-detail',
-  templateUrl: './calle-detail.component.html',
-  styleUrls: ['./calle-detail.component.scss']
-})
-export class CalleDetailComponent implements OnInit {
 
-  private calle: Calle = {id: null, nombre: ""}
+@Component({
+  selector: 'grupo-permiso-detail',
+  templateUrl: './grupo-permiso-detail.component.html',
+  styleUrls: ['./grupo-permiso-detail.component.scss']
+})
+export class GrupoPermisoDetailComponent implements OnInit {
+
+  private grupo: GrupoPermiso = {id: null, nombre: ""};
   private subscription;
 
   constructor(
     private location: Location,
     private message: MessageService,
-    private route: ActivatedRoute,
-    private service: CalleService) { }
+    private route: ActivatedRoute, 
+    private service: GrupoPermisoService) { }
 
   ngOnInit() {
-    this.getCalle();
+    this.getGrupo();
   }
 
-  private getCalle(): void {
+  private getGrupo(): void {
     const id: String = this.route.snapshot.paramMap.get('id');
 
-    if(id) {
+    if(id) {  
       this.service.getByID(id).subscribe(data => {
         if(data.status == 200 && data.data.length != 0) {
-          this.calle = data.data[0];
+          this.grupo = data.data[0];
         }
         else {
           //FIXME no se aprecia el mensaje porque se carga primero el menu 
           this.subscription = this.message.showMessage("Error", 
-          "La calle con el id " + id + " no existe", 
+          "El grupo con el id " + id + " no existe", 
           true).subscribe(_ => this.location.back() );
         }
       });
@@ -52,26 +53,27 @@ export class CalleDetailComponent implements OnInit {
     if(!this.validateForm()) {
       return;
     }
-    if(this.calle.id == null) {
-      this.service.create(this.calle).subscribe(data => {
+    if(this.grupo.id == null) {
+      this.service.create(this.grupo).subscribe(data => {
         if(data.status == 200) {
           this.subscription = this.message.showMessage("Info", 
-            "Calle Creada", true).subscribe( _ => this.location.back() );
+            "Grupo Creado", true).subscribe( _ => this.location.back() );
         }
       });
     }
     else {
-      this.service.update(this.calle).subscribe(data => {
+      this.service.update(this.grupo).subscribe(data => {
         if(data.status == 200) {
           this.subscription = this.message.showMessage("Info", 
-            "Calle Actualizada", true).subscribe( _ => this.location.back() );
+            "Grupo Actualizado", true).subscribe( _ => this.location.back() );
         }
       });
-    } 
+    }
+    
   }
 
   private validateForm(): boolean {
-    if(this.calle.nombre == "") {
+    if(this.grupo.nombre == "") {
       this.message.showMessage("Error", "Nombre Vacío");
       return false;
     }

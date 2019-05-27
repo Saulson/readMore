@@ -16,6 +16,8 @@ import { ColoniaComponent } from './components/colonia/colonia.component';
 import { ColoniaDetailComponent } from './components/colonia-detail/colonia-detail.component';
 import { CalleComponent } from './components/calle/calle.component';
 import { CalleDetailComponent } from './components/calle-detail/calle-detail.component';
+import { GrupoPermisoComponent } from './components/grupo-permiso/grupo-permiso.component';
+import { GrupoPermisoDetailComponent } from './components/grupo-permiso-detail/grupo-permiso-detail.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +30,9 @@ import { CalleDetailComponent } from './components/calle-detail/calle-detail.com
     ColoniaComponent,
     ColoniaDetailComponent,
     CalleComponent,
-    CalleDetailComponent
+    CalleDetailComponent,
+    GrupoPermisoComponent,
+    GrupoPermisoDetailComponent
   ],
   imports: [
     AppRoutingModule,

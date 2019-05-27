@@ -1,0 +1,24 @@
+<div class="container-fluid text-center">
+  <button routerLink="/grupo permiso-detail" class="m-4">Crear</button>
+
+  <ul class="list-group mx-auto d-block w-75 p-2">
+    <li *ngFor="let grupo of grupos" 
+      class="list-group-item d-flex justify-content-between align-items-center">
+      <div class="li" routerLink="/grupo permiso-detail/{{grupo.id}}">{{grupo.nombre}}</div>
+      <span (click)="delete(grupo)" class="badge badge-danger badge-pill">X</span>
+    </li>
+  </ul>
+
+  <ngb-pagination 
+    class="d-flex justify-content-center"
+    [(page)]="page"
+    [pageSize]="limit" 
+    [collectionSize]="totalItems" 
+    [maxSize]="5" 
+    [rotate]="true"
+    [ellipses]="false" 
+    [boundaryLinks]="true"
+    (pageChange)="changePage($event)">
+  </ngb-pagination>
+
+</div>

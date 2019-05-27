@@ -5,8 +5,8 @@ import { BASEURL, BaseService } from './base.service';
 @Injectable({
   providedIn: 'root'
 })
-export class ColoniaService extends BaseService {
+export class GrupoPermisoService extends BaseService {
 
-  protected url = BASEURL + 'colonia';
-  
+  protected url = BASEURL + 'grupo permiso';
+
 }

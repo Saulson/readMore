@@ -71,6 +71,9 @@ def menu():
     else:
         data.update(data=cur.fetchall(), status=200)
 
+        for menu in data['data']:
+            menu['nombre'] = menu['nombre'].replace('_', ' ')
+
     response = make_response(jsonify(data), data['status'])
     response.headers.set('Content-Type', 'application/json; charset=UTF-8')
     return response
