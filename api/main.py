@@ -8,6 +8,7 @@ import colonia
 import editorial
 import estado
 import grupo_permiso
+import permiso
 import tools
 import zona
 
@@ -26,6 +27,7 @@ api.register_blueprint(colonia.bp)
 api.register_blueprint(editorial.bp)
 api.register_blueprint(estado.bp)
 api.register_blueprint(grupo_permiso.bp)
+api.register_blueprint(permiso.bp)
 api.register_blueprint(tools.bp)
 api.register_blueprint(zona.bp)
 

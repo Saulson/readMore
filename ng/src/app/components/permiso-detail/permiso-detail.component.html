@@ -1,0 +1,58 @@
+<div class="container-fluid text-center">
+  <div class="form">
+    <div class="form-group p-1 m-3">
+      <label class="p-2 m-3">Nombre</label>
+      <input id="nombre" class="p-2 m-3" (keyup.enter)="submit()"
+          [(ngModel)]="permiso.nombre" autofocus/>
+    </div>
+
+    <div class="form-group p-1 m-3">
+      <label class="p-2 m-3">Descripción</label>
+      <input id="descripcion" class="p-2 m-3" (keyup.enter)="submit()"
+          [(ngModel)]="permiso.descripcion"/>
+    </div>
+
+    <div class="form-group p-1 m-3">
+      <label class="p-2 m-3">Crear</label>
+      <input id="crear" class="p-2 m-3" (keyup.enter)="submit()"
+          [(ngModel)]="permiso.crear" type="checkbox"/>
+    </div>
+
+    <div class="form-group p-1 m-3">
+      <label class="p-2 m-3">Modificar</label>
+      <input id="modificar" class="p-2 m-3" (keyup.enter)="submit()"
+          [(ngModel)]="permiso.modificar" type="checkbox"/>
+    </div>
+
+    <div class="form-group p-1 m-3">
+      <label class="p-2 m-3">Mostrar</label>
+      <input id="mostrar" class="p-2 m-3" (keyup.enter)="submit()"
+          [(ngModel)]="permiso.mostrar" type="checkbox"/>
+    </div>
+
+    <div class="form-group p-1 m-3">
+      <label class="p-2 m-3">Eliminar</label>
+      <input id="eliminar" class="p-2 m-3" (keyup.enter)="submit()"
+          [(ngModel)]="permiso.eliminar" type="checkbox"/>
+    </div>
+
+    <div class="form-group p-1 m-3">
+      <label class="p-2 m-3">Condición</label>
+      <input id="condicion" class="p-2 m-3" (keyup.enter)="submit()"
+          [(ngModel)]="permiso.condicion"/>
+    </div>
+
+    <div class="form-group p-1 m-3">
+      <button (click)="back()">Atrás</button>
+      <button (click)="submit()">
+        <div *ngIf="permiso.id == null">
+          Crear
+        </div>
+        <div *ngIf="permiso.id != null">
+          Actualizar
+        </div>
+      </button>
+    </div>
+  </div>
+
+</div>

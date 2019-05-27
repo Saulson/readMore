@@ -86,6 +86,9 @@ export class BaseService {
       if(error.status == 500) {
         this.message.showMessage('Error', 'Internal API Server Error');
       }
+      else if(error.status == 504) {
+        this.message.showMessage('Error', "API Is Down");
+      }
       else if(error.status == 401) {
         this.message.showMessage('Error', 'Operacion no autorizada', 
           true).subscribe(_ => {

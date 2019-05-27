@@ -28,6 +28,9 @@ import { LoginComponent } from './components/login/login.component';
 import { ZonaComponent } from './components/zona/zona.component';
 import { ZonaDetailComponent } from './components/zona-detail/zona-detail.component';
 
+import { PermisoComponent } from './components/permiso/permiso.component';
+import { PermisoDetailComponent } from './components/permiso-detail/permiso-detail.component';
+
 const routes: Routes = [
   { path: '', redirectTo: 'index', pathMatch: 'full' },
 
@@ -62,6 +65,10 @@ const routes: Routes = [
   { path: 'index', component: IndexComponent},
 
   { path: 'login', component: LoginComponent },
+
+  { path: 'permiso', component: PermisoComponent },
+  { path: 'permiso-detail/:id', component: PermisoDetailComponent },
+  { path: 'permiso-detail', component: PermisoDetailComponent },
 
   { path: 'zona', component: ZonaComponent },
   { path: 'zona-detail/:id', component: ZonaDetailComponent },

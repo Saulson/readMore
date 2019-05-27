@@ -26,6 +26,8 @@ import { AutorComponent } from './components/autor/autor.component';
 import { AutorDetailComponent } from './components/autor-detail/autor-detail.component';
 import { EstadoComponent } from './components/estado/estado.component';
 import { EstadoDetailComponent } from './components/estado-detail/estado-detail.component';
+import { PermisoComponent } from './components/permiso/permiso.component';
+import { PermisoDetailComponent } from './components/permiso-detail/permiso-detail.component';
 
 @NgModule({
   declarations: [
@@ -48,7 +50,9 @@ import { EstadoDetailComponent } from './components/estado-detail/estado-detail.
     AutorComponent,
     AutorDetailComponent,
     EstadoComponent,
-    EstadoDetailComponent
+    EstadoDetailComponent,
+    PermisoComponent,
+    PermisoDetailComponent
   ],
   imports: [
     AppRoutingModule,
