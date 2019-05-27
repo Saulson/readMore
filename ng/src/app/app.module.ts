@@ -24,6 +24,8 @@ import { CategoriaComponent } from './components/categoria/categoria.component';
 import { CategoriaDetailComponent } from './components/categoria-detail/categoria-detail.component';
 import { AutorComponent } from './components/autor/autor.component';
 import { AutorDetailComponent } from './components/autor-detail/autor-detail.component';
+import { EstadoComponent } from './components/estado/estado.component';
+import { EstadoDetailComponent } from './components/estado-detail/estado-detail.component';
 
 @NgModule({
   declarations: [
@@ -44,7 +46,9 @@ import { AutorDetailComponent } from './components/autor-detail/autor-detail.com
     CategoriaComponent,
     CategoriaDetailComponent,
     AutorComponent,
-    AutorDetailComponent
+    AutorDetailComponent,
+    EstadoComponent,
+    EstadoDetailComponent
   ],
   imports: [
     AppRoutingModule,

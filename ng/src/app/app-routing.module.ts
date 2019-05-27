@@ -16,6 +16,9 @@ import { ColoniaDetailComponent } from './components/colonia-detail/colonia-deta
 import { EditorialComponent } from './components/editorial/editorial.component';
 import { EditorialDetailComponent } from './components/editorial-detail/editorial-detail.component';
 
+import { EstadoComponent } from './components/estado/estado.component';
+import { EstadoDetailComponent } from './components/estado-detail/estado-detail.component';
+
 import { GrupoPermisoComponent } from './components/grupo-permiso/grupo-permiso.component';
 import { GrupoPermisoDetailComponent } from './components/grupo-permiso-detail/grupo-permiso-detail.component';
 
@@ -47,6 +50,10 @@ const routes: Routes = [
   { path: 'editorial', component: EditorialComponent },
   { path: 'editorial-detail/:id', component: EditorialDetailComponent },
   { path: 'editorial-detail', component: EditorialDetailComponent },
+
+  { path: 'estado', component: EstadoComponent },
+  { path: 'estado-detail/:id', component: EstadoDetailComponent },
+  { path: 'estado-detail', component: EstadoDetailComponent },
 
   { path: 'grupo permiso', component: GrupoPermisoComponent },
   { path: 'grupo permiso-detail/:id', component: GrupoPermisoDetailComponent },
