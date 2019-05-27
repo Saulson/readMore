@@ -4,6 +4,9 @@ import { Routes, RouterModule } from '@angular/router';
 import { CalleComponent } from './components/calle/calle.component';
 import { CalleDetailComponent } from './components/calle-detail/calle-detail.component';
 
+import { CategoriaComponent } from './components/categoria/categoria.component';
+import { CategoriaDetailComponent } from './components/categoria-detail/categoria-detail.component';
+
 import { ColoniaComponent } from './components/colonia/colonia.component'
 import { ColoniaDetailComponent } from './components/colonia-detail/colonia-detail.component';
 
@@ -25,6 +28,10 @@ const routes: Routes = [
   { path: 'calle', component: CalleComponent },
   { path: 'calle-detail/:id', component: CalleDetailComponent },
   { path: 'calle-detail', component: CalleDetailComponent },
+
+  { path: 'categoria', component: CategoriaComponent },
+  { path: 'categoria-detail/:id', component: CategoriaDetailComponent },
+  { path: 'categoria-detail', component: CategoriaDetailComponent },
 
   { path: 'colonia', component: ColoniaComponent },
   { path: 'colonia-detail/:id', component: ColoniaDetailComponent },

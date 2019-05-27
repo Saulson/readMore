@@ -20,6 +20,8 @@ import { GrupoPermisoComponent } from './components/grupo-permiso/grupo-permiso.
 import { GrupoPermisoDetailComponent } from './components/grupo-permiso-detail/grupo-permiso-detail.component';
 import { ZonaComponent } from './components/zona/zona.component';
 import { ZonaDetailComponent } from './components/zona-detail/zona-detail.component';
+import { CategoriaComponent } from './components/categoria/categoria.component';
+import { CategoriaDetailComponent } from './components/categoria-detail/categoria-detail.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +38,9 @@ import { ZonaDetailComponent } from './components/zona-detail/zona-detail.compon
     GrupoPermisoComponent,
     GrupoPermisoDetailComponent,
     ZonaComponent,
-    ZonaDetailComponent
+    ZonaDetailComponent,
+    CategoriaComponent,
+    CategoriaDetailComponent
   ],
   imports: [
     AppRoutingModule,

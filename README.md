@@ -13,8 +13,7 @@ Flask
 docker build -t readmore_api ./docker/flask/
 
 #### Creating Container
-cd docker
-docker-compose up --no-start
+cd docker && docker-compose up --no-start
 
 
 Access to database
