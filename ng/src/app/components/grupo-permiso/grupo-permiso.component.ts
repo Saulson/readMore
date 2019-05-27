@@ -55,7 +55,7 @@ export class GrupoPermisoComponent implements OnInit {
   public delete(grupo: GrupoPermiso):void {
     this.service.delete(grupo.id).subscribe(data => {
       if(data.status == 200) {
-        this.grupos = this.grupos.filter(e => e !== grupo);
+        this.initPagination();
       }
     });
   }

@@ -1,24 +1,24 @@
 import { Component, OnInit } from '@angular/core';
 
-import { Colonia } from '../../models/colonia';
+import { Zona } from '../../models/zona';
 
 import { MessageService } from '../../services/message.service';
-import { ColoniaService } from '../../services/colonia.service';
+import { ZonaService } from '../../services/zona.service';
 
 @Component({
-  selector: 'colonia',
-  templateUrl: './colonia.component.html',
-  styleUrls: ['./colonia.component.scss']
+  selector: 'zona',
+  templateUrl: './zona.component.html',
+  styleUrls: ['./zona.component.scss']
 })
-export class ColoniaComponent implements OnInit {
+export class ZonaComponent implements OnInit {
 
-  private colonias: Colonia[];
+  private zonas: Zona[];
   private totalItems: number;
   private limit: number;
   private page: number;
   private previousPage: number;
 
-  constructor(private service: ColoniaService) { }
+  constructor(private service: ZonaService) { }
 
   ngOnInit() {
     this.initPagination();
@@ -32,7 +32,7 @@ export class ColoniaComponent implements OnInit {
     this.service.getNumRecord().subscribe(data => {
       if(data.status == 200) {
         this.totalItems = data.data.count;
-        this.getColonias();
+        this.getZonas();
       }
     })
   }
@@ -40,20 +40,20 @@ export class ColoniaComponent implements OnInit {
   public changePage(page: number) {
     if(page !== this.previousPage) {
       this.previousPage = page;
-      this.getColonias();
+      this.getZonas();
     }
   }
 
-  private getColonias(): void {
-    this.service.get(this.limit, this.page).subscribe(data => {
+  private getZonas(): void {
+    this.service.get(this.limit, this.page, ['id', 'nombre']).subscribe(data => {
       if(data.status == 200) {
-        this.colonias = data.data;
+        this.zonas = data.data;
       }
     });
   }
 
-  public delete(colonia: Colonia):void {
-    this.service.delete(colonia.id).subscribe(data => {
+  public delete(zona: Zona):void {
+    this.service.delete(zona.id).subscribe(data => {
       if(data.status == 200) {
         this.initPagination();
       }

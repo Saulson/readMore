@@ -8,7 +8,8 @@ import { Request } from '../models/request';
 import { MessageService } from './message.service';
 
 export const httpOptions = {
-  headers: new HttpHeaders({ 'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8' })
+  headers: new HttpHeaders({ 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8' })
+
 };
 
 export const BASEURL = 'api/';
@@ -34,10 +35,10 @@ export class BaseService {
     );
   }
 
-  public get(limit: number, page: number): Observable<Request> {
+  public get(limit: number, page: number, fields?: any): Observable<Request> {
     this.message.showLoader();
 
-    return this.http.get<Request>(this.url + this.toGETRequest(limit, page)).pipe(
+    return this.http.get<Request>(this.url + this.toGETRequest(limit, page, fields)).pipe(
       tap(_ => this.message.close(true)),
       catchError(this.handleError<Request>({data: null, status: 400}))
     );
@@ -110,7 +111,7 @@ export class BaseService {
     return res;
   }
 
-  protected toGETRequest(limit: number, page: number, params?: any): String {
+  protected toGETRequest(limit: number, page: number, fields: any, params?: any): String {
     var res = "?";
     var offset = (page - 1) * limit;
 
@@ -120,6 +121,10 @@ export class BaseService {
       res += key + "=" + params[key] + "&";
     }
 
-     return res;
+    if(fields != undefined) {
+      res += "fields=" + fields
+    }
+
+    return res;
   }
 }

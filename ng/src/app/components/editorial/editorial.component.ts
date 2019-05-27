@@ -55,7 +55,7 @@ export class EditorialComponent implements OnInit {
   public delete(editorial: Editorial):void {
     this.service.delete(editorial.id).subscribe(data => {
       if(data.status == 200) {
-        this.editoriales = this.editoriales.filter(e => e !== editorial);
+        this.initPagination();
       }
     });
   }

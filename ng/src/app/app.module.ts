@@ -18,6 +18,8 @@ import { CalleComponent } from './components/calle/calle.component';
 import { CalleDetailComponent } from './components/calle-detail/calle-detail.component';
 import { GrupoPermisoComponent } from './components/grupo-permiso/grupo-permiso.component';
 import { GrupoPermisoDetailComponent } from './components/grupo-permiso-detail/grupo-permiso-detail.component';
+import { ZonaComponent } from './components/zona/zona.component';
+import { ZonaDetailComponent } from './components/zona-detail/zona-detail.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +34,9 @@ import { GrupoPermisoDetailComponent } from './components/grupo-permiso-detail/g
     CalleComponent,
     CalleDetailComponent,
     GrupoPermisoComponent,
-    GrupoPermisoDetailComponent
+    GrupoPermisoDetailComponent,
+    ZonaComponent,
+    ZonaDetailComponent
   ],
   imports: [
     AppRoutingModule,

@@ -1,4 +1,5 @@
-export class GrupoPermiso {
+export class Zona {
     id: String;
     nombre: String;
+    foto: any;
 }

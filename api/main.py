@@ -6,6 +6,7 @@ import colonia
 import editorial
 import grupo_permiso
 import tools
+import zona
 
 api = Flask(__name__)
 api.config.from_mapping(
@@ -20,6 +21,7 @@ api.register_blueprint(colonia.bp)
 api.register_blueprint(editorial.bp)
 api.register_blueprint(grupo_permiso.bp)
 api.register_blueprint(tools.bp)
+api.register_blueprint(zona.bp)
 
 if __name__ == '__main__':
     api.run()

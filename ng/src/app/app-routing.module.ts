@@ -16,6 +16,9 @@ import { GrupoPermisoDetailComponent } from './components/grupo-permiso-detail/g
 import { IndexComponent } from './components/index/index.component';
 import { LoginComponent } from './components/login/login.component';
 
+import { ZonaComponent } from './components/zona/zona.component';
+import { ZonaDetailComponent } from './components/zona-detail/zona-detail.component';
+
 const routes: Routes = [
   { path: '', redirectTo: 'index', pathMatch: 'full' },
 
@@ -38,6 +41,10 @@ const routes: Routes = [
   { path: 'index', component: IndexComponent},
 
   { path: 'login', component: LoginComponent },
+
+  { path: 'zona', component: ZonaComponent },
+  { path: 'zona-detail/:id', component: ZonaDetailComponent },
+  { path: 'zona-detail', component: ZonaDetailComponent },
 ];
 
 @NgModule({

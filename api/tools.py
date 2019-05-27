@@ -3,6 +3,7 @@ import psycopg2
 import base64
 
 from db import get_cursor
+from auth import session_check
 
 
 bp = Blueprint('tool', __name__, url_prefix='/tool')
@@ -76,4 +77,33 @@ def menu():
 
     response = make_response(jsonify(data), data['status'])
     response.headers.set('Content-Type', 'application/json; charset=UTF-8')
+
+    return response
+
+@bp.route('/img/<model>/<field>/<int:res_id>', methods=('GET',))
+@session_check
+def img(model, field, res_id):
+    data = {}
+
+    cur = get_cursor()
+
+    query = "SELECT %s FROM %s " % (field, model)
+    query += "WHERE id = %s"
+
+    try:
+        cur.execute(query, (res_id,))
+    except psycopg2.Error as ex:
+        response = make_response(jsonify({'error': ex.pgerror, 'status': 400}), 400)
+        response.headers.set('Content-Type', 'application/json; charset=UTF-8')
+        return response
+
+    image = cur.fetchone()
+    if image:
+        image_binary = base64.b64decode(image[field])
+        response = make_response(image_binary, 200)
+        response.headers.set('Content-Type', 'image/png')
+    else:
+        response = make_response(jsonify({'error': "No se encontro la imagen", 'status': 400}), 400)
+        response.headers.set('Content-Type', 'application/json; charset=UTF-8')
+
     return response

@@ -1,0 +1,32 @@
+<div class="container-fluid text-center">
+  <div class="form">
+
+    <div class="form-group p-1 m-3">
+      <label class="p-2 m-3">Nombre</label>
+      <input id="nombre" class="p-2 m-3" (keyup.enter)="submit()"
+          [(ngModel)]="zona.nombre" autofocus/>
+    </div>
+
+    <div class="form-group p-1 m-3">
+      <label class="p-2 m-3">Foto</label>
+      <img class="p-2 m-3" width="100" height="100" src="/api/tool/img/zona/foto/{{zona.id}}"/>
+    </div>
+
+    <div class="form-group p-1 m-3">
+      <input type='file' accept="image/jpeg,image/jpg,image/png" (change)='openFile($event)'/>
+    </div>
+
+    <div class="form-group p-1 m-3">
+      <button (click)="back()">Atrás</button>
+      <button (click)="submit()">
+        <div *ngIf="zona.id == null">
+          Crear
+        </div>
+        <div *ngIf="zona.id != null">
+          Actualizar
+        </div>
+      </button>
+    </div>
+  </div>
+
+</div>

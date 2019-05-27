@@ -11,8 +11,8 @@ def count(table_name):
 
     try:
         cur.execute(query)
-    except pgerror as ex:
-        data.update(error=ex.error, status=400)
+    except psycopg2.Error as ex:
+        data.update(error=ex.pgerror, status=400)
     else:
         data.update(data=cur.fetchone(), status=200)
 
@@ -33,7 +33,18 @@ def get(table_name):
 
     cur = get_cursor()
     args = dict(request.args)
-    query = "SELECT * FROM %s " % table_name
+
+    if 'fields' in args:
+        query = "SELECT "
+        for field in args['fields'].split(','):
+            query += field + ", "
+
+        query = query[:-2] + " FROM %s " % table_name
+        del args['fields']
+
+    else:
+        query = "SELECT * FROM %s " % table_name
+
     if args:
         keys = list(args)
         if 'limit' in keys:
@@ -112,9 +123,9 @@ def patch(table_name, fields):
     query = "UPDATE %s SET " % table_name
 
     for field in fields:
-        query += field + " = %(" + field + ")s "
+        query += field + " = %(" + field + ")s, "
 
-    query += "WHERE id = %(id)s"
+    query = query[:-2] + " WHERE id = %s" % request.form['id']
 
     try:
         cur.execute(query, request.form)

@@ -55,8 +55,7 @@ export class CalleComponent implements OnInit {
   public delete(calle: Calle):void {
     this.service.delete(calle.id).subscribe(data => {
       if(data.status == 200) {
-        this.calles = this.calles.filter(e => e !== calle);
-        this.limit
+        this.initPagination();
       }
     });
   }
