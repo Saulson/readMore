@@ -1,0 +1,24 @@
+<div class="container-fluid text-center">
+  <button routerLink="/autor-detail" class="m-4">Crear</button>
+
+  <ul class="list-group mx-auto d-block w-75 p-2">
+    <li *ngFor="let autor of autores" 
+      class="list-group-item d-flex justify-content-between align-items-center">
+      <div class="li" routerLink="/autor-detail/{{autor.id}}">{{autor.nombre}}</div>
+      <span (click)="delete(autor)" class="badge badge-danger badge-pill">X</span>
+    </li>
+  </ul>
+
+  <ngb-pagination 
+    class="d-flex justify-content-center"
+    [(page)]="page"
+    [pageSize]="limit" 
+    [collectionSize]="totalItems" 
+    [maxSize]="5" 
+    [rotate]="true"
+    [ellipses]="false" 
+    [boundaryLinks]="true"
+    (pageChange)="changePage($event)">
+  </ngb-pagination>
+
+</div>

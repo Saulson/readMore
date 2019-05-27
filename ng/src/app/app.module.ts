@@ -22,6 +22,8 @@ import { ZonaComponent } from './components/zona/zona.component';
 import { ZonaDetailComponent } from './components/zona-detail/zona-detail.component';
 import { CategoriaComponent } from './components/categoria/categoria.component';
 import { CategoriaDetailComponent } from './components/categoria-detail/categoria-detail.component';
+import { AutorComponent } from './components/autor/autor.component';
+import { AutorDetailComponent } from './components/autor-detail/autor-detail.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +42,9 @@ import { CategoriaDetailComponent } from './components/categoria-detail/categori
     ZonaComponent,
     ZonaDetailComponent,
     CategoriaComponent,
-    CategoriaDetailComponent
+    CategoriaDetailComponent,
+    AutorComponent,
+    AutorDetailComponent
   ],
   imports: [
     AppRoutingModule,

@@ -1,6 +1,9 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
+import { AutorComponent } from './components/autor/autor.component';
+import { AutorDetailComponent } from './components/autor-detail/autor-detail.component';
+
 import { CalleComponent } from './components/calle/calle.component';
 import { CalleDetailComponent } from './components/calle-detail/calle-detail.component';
 
@@ -24,6 +27,10 @@ import { ZonaDetailComponent } from './components/zona-detail/zona-detail.compon
 
 const routes: Routes = [
   { path: '', redirectTo: 'index', pathMatch: 'full' },
+
+  { path: 'autor', component: AutorComponent },
+  { path: 'autor-detail/:id', component: AutorDetailComponent },
+  { path: 'autor-detail', component: AutorDetailComponent },
 
   { path: 'calle', component: CalleComponent },
   { path: 'calle-detail/:id', component: CalleDetailComponent },

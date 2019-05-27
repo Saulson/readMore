@@ -1,0 +1,35 @@
+<div class="container-fluid text-center">
+  <div class="form">
+
+    <div class="form-group p-1 m-3">
+      <label class="p-2 m-3">Nombre</label>
+      <input id="nombre" class="p-2 m-3" (keyup.enter)="submit()"
+          [(ngModel)]="autor.nombre" autofocus/>
+    </div>
+
+    <div class="form-group p-1 m-3">
+      <label class="p-2 m-3">Apellido Paterno</label>
+      <input id="apeidoP" class="p-2 m-3" (keyup.enter)="submit()"
+          [(ngModel)]="autor.apeidop" autofocus/>
+    </div>
+
+    <div class="form-group p-1 m-3">
+      <label class="p-2 m-3">Apellido Materno</label>
+      <input id="apeidoM" class="p-2 m-3" (keyup.enter)="submit()"
+          [(ngModel)]="autor.apeidom" autofocus/>
+    </div>
+    
+    <div class="form-group p-1 m-3">
+      <button (click)="back()">Atrás</button>
+      <button (click)="submit()">
+        <div *ngIf="autor.id == null">
+          Crear
+        </div>
+        <div *ngIf="autor.id != null">
+          Actualizar
+        </div>
+      </button>
+    </div>
+  </div>
+
+</div>

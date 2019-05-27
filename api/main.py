@@ -1,6 +1,7 @@
 from flask import Flask
 
 import auth
+import autor
 import calle
 import categoria
 import colonia
@@ -17,6 +18,7 @@ api.config.from_mapping(
 )
 
 api.register_blueprint(auth.bp)
+api.register_blueprint(autor.bp)
 api.register_blueprint(calle.bp)
 api.register_blueprint(categoria.bp)
 api.register_blueprint(colonia.bp)
