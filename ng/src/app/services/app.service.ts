@@ -31,4 +31,12 @@ export class AppService extends BaseService {
     );
   }
 
+  public getTables(): Observable<Request> {
+    this.message.showLoader();
+    return this.http.get<Request>(this.url + "tables").pipe(
+      tap(_ => this.message.close(true)),
+      catchError(this.handleError<Request>({status: 400, data: null}))
+    );
+  }
+
 }

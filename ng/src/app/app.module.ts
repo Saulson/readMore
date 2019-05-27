@@ -62,7 +62,8 @@ import { ConfiguracionComponent } from './components/configuracion/configuracion
     FormsModule,
     HttpClientModule,
     NgbDropdownModule,
-    NgbPaginationModule
+    NgbPaginationModule,
+    NgbTypeaheadModule
   ],
   providers: [],
   bootstrap: [AppComponent]

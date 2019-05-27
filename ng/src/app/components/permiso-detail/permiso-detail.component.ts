@@ -1,8 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { NgbTypeahead } from '@ng-bootstrap/ng-bootstrap';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
+import { Observable, Subject, merge } from 'rxjs';
+import { debounceTime, distinctUntilChanged, filter, map } from 'rxjs/operators';
 
 import { Permiso } from '../../models/permiso';
+import { AppService } from '../../services/app.service';
 import { PermisoService } from '../../services/permiso.service';
 import { MessageService } from '../../services/message.service';
 
@@ -23,16 +27,23 @@ export class PermisoDetailComponent implements OnInit {
     eliminar: false,
     condicion: ""
   };
+  private tablas: String[];
   private subscription;
+
+  @ViewChild('nombre') instanceNombre: NgbTypeahead;
+  focus$ = new Subject<string>();
+  click$ = new Subject<string>();
 
   constructor(
     private location: Location,
     private message: MessageService,
     private route: ActivatedRoute, 
-    private service: PermisoService) { }
+    private service: PermisoService,
+    private appService: AppService) { }
 
   ngOnInit() {
     this.getPermiso();
+    this.getTablas();
   }
 
   private getPermiso(): void {
@@ -52,6 +63,14 @@ export class PermisoDetailComponent implements OnInit {
         }
       });
     }
+  }
+
+  private getTablas(): void {
+    this.appService.getTables().subscribe(data => {
+      if(data.status == 200) {
+        this.tablas = data.data;
+      }
+    });
   }
 
   public back(): void {
@@ -87,6 +106,11 @@ export class PermisoDetailComponent implements OnInit {
       return false;
     }
 
+    if(!this.tablas.includes(this.permiso.nombre)) {
+      this.message.showMessage("Error", "Nombre no valido");
+      return false;
+    }
+
     if(this.permiso.descripcion == "") {
       this.message.showMessage("Error", "Descripción Vacía");
       return false;
@@ -105,6 +129,17 @@ export class PermisoDetailComponent implements OnInit {
     }
 
     return true;
+  }
+
+  search = (text$: Observable<string>) => {
+    const debouncedText$ = text$.pipe(debounceTime(200), distinctUntilChanged());
+    const clicksWithClosedPopup$ = this.click$.pipe(filter(() => !this.instanceNombre.isPopupOpen()));
+    const inputFocus$ = this.focus$;
+
+    return merge(debouncedText$, inputFocus$, clicksWithClosedPopup$).pipe(
+      map(term => (term === '' ? this.tablas
+        : this.tablas.filter(v => v.toLowerCase().indexOf(term.toLowerCase()) > -1)).slice(0, 5))
+    );
   }
 
   ngOnDestroy() {

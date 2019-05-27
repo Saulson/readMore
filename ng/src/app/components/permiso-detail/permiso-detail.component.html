@@ -2,8 +2,17 @@
   <div class="form">
     <div class="form-group p-1 m-3">
       <label class="p-2 m-3">Nombre</label>
-      <input id="nombre" class="p-2 m-3" (keyup.enter)="submit()"
-          [(ngModel)]="permiso.nombre" autofocus/>
+      <input
+        id="typeahead-focus"
+        type="text"
+        class="form-control"
+        [(ngModel)]="permiso.nombre"
+        [ngbTypeahead]="search"
+        (focus)="focus$.next($event.target.value)"
+        (click)="click$.next($event.target.value)"
+        #nombre="ngbTypeahead"
+        (keyup.enter)="submit()"
+      />
     </div>
 
     <div class="form-group p-1 m-3">
