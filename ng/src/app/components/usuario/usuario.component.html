@@ -1,11 +1,11 @@
 <div class="container-fluid text-center">
-  <button routerLink="/persona-detail" class="m-4">Crear</button>
+  <button routerLink="/usuario-detail" class="m-4">Crear</button>
 
   <ul class="list-group mx-auto d-block w-75 p-2">
-    <li *ngFor="let persona of personas" 
+    <li *ngFor="let usuario of usuarios" 
       class="list-group-item d-flex justify-content-between align-items-center">
-      <div class="li" routerLink="/persona-detail/{{persona.id}}">{{persona.nombre}}</div>
-      <span (click)="delete(persona)" class="badge badge-danger badge-pill">X</span>
+      <div class="li" routerLink="/usuario-detail/{{usuario.id}}">{{usuario.id}}</div>
+      <span (click)="delete(usuario)" class="badge badge-danger badge-pill">X</span>
     </li>
   </ul>
 

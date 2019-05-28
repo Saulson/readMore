@@ -27,11 +27,16 @@ import { GrupoPermisoDetailComponent } from './components/grupo-permiso-detail/g
 import { IndexComponent } from './components/index/index.component';
 import { LoginComponent } from './components/login/login.component';
 
-import { PermisoComponent } from './components/permiso/permiso.component';
-import { PermisoDetailComponent } from './components/permiso-detail/permiso-detail.component';
+import { ModificarPassComponent } from './components/modificar-pass/modificar-pass.component';
 
 import { PersonaComponent } from './components/persona/persona.component';
 import { PersonaDetailComponent } from './components/persona-detail/persona-detail.component';
+
+import { PermisoComponent } from './components/permiso/permiso.component';
+import { PermisoDetailComponent } from './components/permiso-detail/permiso-detail.component';
+
+import { UsuarioComponent } from './components/usuario/usuario.component';
+import { UsuarioDetailComponent } from './components/usuario-detail/usuario-detail.component';
 
 import { ZonaComponent } from './components/zona/zona.component';
 import { ZonaDetailComponent } from './components/zona-detail/zona-detail.component';
@@ -73,13 +78,19 @@ const routes: Routes = [
 
   { path: 'login', component: LoginComponent },
 
-  { path: 'persona', component: PersonaComponent},
-  { path: 'persona-detail/:id', component: PersonaDetailComponent },
-  { path: 'persona-detail', component: PersonaDetailComponent },
+  { path: 'modificar-pass/:id', component: ModificarPassComponent },
 
   { path: 'permiso', component: PermisoComponent },
   { path: 'permiso-detail/:id', component: PermisoDetailComponent },
   { path: 'permiso-detail', component: PermisoDetailComponent },
+
+  { path: 'persona', component: PersonaComponent},
+  { path: 'persona-detail/:id', component: PersonaDetailComponent },
+  { path: 'persona-detail', component: PersonaDetailComponent },
+
+  { path: 'usuario', component: UsuarioComponent },
+  { path: 'usuario-detail/:id', component: UsuarioDetailComponent },
+  { path: 'usuario-detail', component: UsuarioDetailComponent },
 
   { path: 'zona', component: ZonaComponent },
   { path: 'zona-detail/:id', component: ZonaDetailComponent },

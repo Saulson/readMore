@@ -5,37 +5,32 @@ import { Location } from '@angular/common';
 import { Observable } from 'rxjs';
 import { debounceTime, distinctUntilChanged, switchMap } from 'rxjs/operators';
 
-import { Calle } from '../../models/calle';
-import { Colonia } from '../../models/colonia';
+import { GrupoPermiso } from '../../models/grupo-permiso';
 import { Persona } from '../../models/persona';
+import { Usuario } from '../../models/usuario';
 
-import { CalleService } from '../../services/calle.service';
-import { ColoniaService } from '../../services/colonia.service';
+import { GrupoPermisoService } from '../../services/grupo-permiso.service';
 import { PersonaService } from '../../services/persona.service';
+import { UsuarioService } from '../../services/usuario.service';
 import { MessageService } from '../../services/message.service';
 
 @Component({
-  selector: 'persona-detail',
-  templateUrl: './persona-detail.component.html',
-  styleUrls: ['./persona-detail.component.scss']
+  selector: 'app-usuario-detail',
+  templateUrl: './usuario-detail.component.html',
+  styleUrls: ['./usuario-detail.component.scss']
 })
-export class PersonaDetailComponent implements OnInit {
+export class UsuarioDetailComponent implements OnInit {
 
-  private persona: Persona = {
+  private usuario: Usuario = {
     id: null, 
-    nombre: "",
-    apeidop: "",
-    apeidom: "",
-    correo: "",
-    telefono: "",
-    numero: "",
-    id_colonia: null,
-    id_calle: null,
+    contrasena: null,
+    id_persona: null,
+    id_grupo_permiso: null,
   };
 
-  private calle;
+  private persona;
 
-  private colonia;
+  private grupo;
 
   private subscription;
 
@@ -43,9 +38,9 @@ export class PersonaDetailComponent implements OnInit {
     private location: Location,
     private message: MessageService,
     private route: ActivatedRoute, 
-    private service: PersonaService,
-    private serviceCalle: CalleService,
-    private serviceColonia: ColoniaService) { }
+    private service: UsuarioService,
+    private serviceGrupo: GrupoPermisoService,
+    private servicePersona: PersonaService) { }
 
   ngOnInit() {
     this.getPersona();
@@ -55,19 +50,19 @@ export class PersonaDetailComponent implements OnInit {
     const id: String = this.route.snapshot.paramMap.get('id');
 
     if(id) {  
-      this.service.getByID(id).subscribe(data => {
+      this.service.getUsuarioByID(id).subscribe(data => {
         if(data.status == 200 && data.data.length != 0) {
-          this.persona = data.data[0];
+          this.usuario = data.data[0];
 
-          this.serviceCalle.getByID(this.persona.id_calle).subscribe(data => {
+          this.serviceGrupo.getByID(this.usuario.id_grupo_permiso).subscribe(data => {
             if(data.status == 200 && data.data.length != 0) {
-              this.calle = data.data[0];
+              this.grupo = data.data[0];
             }
           });
 
-          this.serviceColonia.getByID(this.persona.id_colonia).subscribe(data => {
+          this.servicePersona.getByID(this.usuario.id_persona).subscribe(data => {
             if(data.status == 200 && data.data.length != 0) {
-              this.colonia = data.data[0];
+              this.persona = data.data[0];
             }
           });
         }
@@ -89,16 +84,16 @@ export class PersonaDetailComponent implements OnInit {
     if(!this.validateForm()) {
       return;
     }
-    if(this.persona.id == null) {
-      this.service.create(this.persona).subscribe(data => {
+    if(this.usuario.id == null) {
+      this.service.create(this.usuario).subscribe(data => {
         if(data.status == 200) {
           this.subscription = this.message.showMessage("Info", 
-            "Persona Creada", true).subscribe( _ => this.location.back() );
+            "Usuario Creado", true).subscribe( _ => this.location.back() );
         }
       });
     }
     else {
-      this.service.update(this.persona).subscribe(data => {
+      this.service.update(this.usuario).subscribe(data => {
         if(data.status == 200) {
           this.subscription = this.message.showMessage("Info", 
             "Persona Actualizada", true).subscribe( _ => this.location.back() );
@@ -109,56 +104,46 @@ export class PersonaDetailComponent implements OnInit {
   }
 
   private validateForm(): boolean {
-    if(this.persona.nombre == "") {
-      this.message.showMessage("Error", "Nombre Vacío");
-      return false;
-    }
-
-    if(this.persona.correo == "") {
-      this.message.showMessage("Error", "Correo Vacío");
-      return false;
-    }
-
-    if(this.calle == undefined || !(this.calle instanceof Object)) {
-      this.message.showMessage("Error", "Calle invalida");
+    if(this.grupo == undefined || !(this.grupo instanceof Object)) {
+      this.message.showMessage("Error", "Grupo Invalido");
       return false;
     }
     else {
-      this.persona.id_calle = this.calle.id;
+      this.usuario.id_grupo_permiso = this.grupo.id;
     }
 
-    if(this.colonia == undefined || !(this.colonia instanceof Object)) {
+    if(this.persona == undefined || !(this.persona instanceof Object)) {
       this.message.showMessage("Error", "Colonia inválida");
       return false;
     }
     else {
-      this.persona.id_colonia = this.colonia.id;
+      this.usuario.id_persona = this.persona.id;
     }
 
     return true;
   }
 
-  searchCalle = (text$: Observable<String>) =>
+  searchGrupo = (text$: Observable<String>) =>
     text$.pipe(
       debounceTime(300),
       distinctUntilChanged(),
       switchMap(term =>
-        this.serviceCalle.getByNombre(term)
+        this.serviceGrupo.getByNombre(term)
       )
     )
 
-  formatterCalle = (c: Calle) => c.nombre;
+  formatterGrupo = (c: GrupoPermiso) => c.nombre;
 
-  searchColonia = (text$: Observable<String>) =>
+  searchPersona = (text$: Observable<String>) =>
     text$.pipe(
       debounceTime(300),
       distinctUntilChanged(),
       switchMap(term =>
-        this.serviceColonia.getByNombre(term)
+        this.servicePersona.getByNombre(term)
       )
     )
 
-  formatterColonia = (c: Colonia) => c.nombre;
+  formatterPersona = (c: Persona) => c.nombre;
 
   ngOnDestroy() {
     if(this.subscription != undefined) {

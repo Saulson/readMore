@@ -12,7 +12,7 @@ import { AuthService } from '../../services/auth.service';
 })
 export class LoginComponent implements OnInit {
 
-  private login : Usuario = {id: null, contrasena: "", id_persona: 0, id_grupo_permiso: 0};
+  private login : Usuario = {id: null, contrasena: "", id_persona: null, id_grupo_permiso: null};
 
   constructor(
     private location: Location,
@@ -31,9 +31,11 @@ export class LoginComponent implements OnInit {
       return;
     }
 
-    this.service.login(this.login).subscribe(_ => {
-      this.location.go('/');
-      window.location.reload();
+    this.service.login(this.login).subscribe(data => {
+      if(data.status == 200) {
+        this.location.go('/');
+        window.location.reload();
+      }
     });
   }
 

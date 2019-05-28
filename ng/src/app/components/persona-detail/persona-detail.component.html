@@ -42,7 +42,6 @@
             [ngbTypeahead]="searchCalle" placeholder="Calle..." 
             [inputFormatter]="formatterCalle"
             [resultTemplate]="templateCalle"/>
-      <span *ngIf="buscandocalle">buscando...</span>
       <ng-template #templateCalle let-r="result" let-t="term">
         <ngb-highlight [result]="r.nombre" [term]="t"></ngb-highlight>
       </ng-template>
@@ -54,7 +53,6 @@
             [ngbTypeahead]="searchColonia" placeholder="Colonia..." 
             [inputFormatter]="formatterColonia"
             [resultTemplate]="templateColonia"/>
-      <span *ngIf="buscandocalle">buscando...</span>
       <ng-template #templateColonia let-r="result" let-t="term">
         <ngb-highlight [result]="r.nombre" [term]="t"></ngb-highlight>
       </ng-template>

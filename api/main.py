@@ -12,6 +12,7 @@ import grupo_permiso
 import permiso
 import persona
 import tools
+import usuario
 import zona
 
 api = Flask(__name__)
@@ -33,6 +34,7 @@ api.register_blueprint(grupo_permiso.bp)
 api.register_blueprint(persona.bp)
 api.register_blueprint(permiso.bp)
 api.register_blueprint(tools.bp)
+api.register_blueprint(usuario.bp)
 api.register_blueprint(zona.bp)
 
 if __name__ == '__main__':

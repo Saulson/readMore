@@ -23,9 +23,9 @@ def login():
         else:
             user = cur.fetchone()
             if user is None:
-                data.update(error="Incorrect Username", status=400)
+                data.update(error="El usuario no existe", status=400)
             elif not check_password_hash(user['contrasena'], request.form['contrasena']):
-                data.update(error="Incorrect Password", status=400)
+                data.update(error="Contraseña Incorrecta", status=400)
             else:
                 session.clear()
                 session['user_id'] = user['id']

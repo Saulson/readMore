@@ -1,0 +1,52 @@
+<div class="container-fluid text-center">
+  <div class="form">
+    <div *ngIf="usuario.id" class="form-group p-1 m-3">
+      <label class="p-2 m-3">{{usuario.id}}</label>
+    </div>
+
+    <div class="form-group p-1 m-3">
+      <label class="p-2 m-3">Contraseña</label>
+      <div *ngIf="usuario.id == null">
+        <input id="contrasena" type="password" [(ngModel)]="usuario.contrasena"/>
+      </div>
+      <div *ngIf="usuario.id != null">
+        <button routerLink="/modificar-pass/{{usuario.id}}">Cambiar</button>
+      </div>
+    </div>
+
+    <div class="form-group p-1 m-3">
+      <label class="p-2 m-3">Persona</label>
+      <input id="persona" type="text" [(ngModel)]="persona" 
+            [ngbTypeahead]="searchPersona" placeholder="Persona..." 
+            [inputFormatter]="formatterPersona"
+            [resultTemplate]="templatePersona"/>
+      <ng-template #templatePersona let-r="result" let-t="term">
+        <ngb-highlight [result]="r.nombre" [term]="t"></ngb-highlight>
+      </ng-template>
+    </div>
+
+    <div class="form-group p-1 m-3">
+      <label class="p-2 m-3">Grupo Permiso</label>
+      <input id="grupo" type="text" [(ngModel)]="grupo" 
+            [ngbTypeahead]="searchGrupo" placeholder="Grupo..." 
+            [inputFormatter]="formatterGrupo"
+            [resultTemplate]="templateGrupo"/>
+      <ng-template #templateGrupo let-r="result" let-t="term">
+        <ngb-highlight [result]="r.nombre" [term]="t"></ngb-highlight>
+      </ng-template>
+    </div>
+
+    <div class="form-group p-1 m-3">
+      <button (click)="back()">Atrás</button>
+      <button (click)="submit()">
+        <div *ngIf="usuario.id == null">
+          Crear
+        </div>
+        <div *ngIf="usuario.id != null">
+          Actualizar
+        </div>
+      </button>
+    </div>
+  </div>
+
+</div>
