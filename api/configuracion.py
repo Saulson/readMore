@@ -1,7 +1,7 @@
 from flask import Blueprint, jsonify, make_response, request
 
 from db import get_db, get_cursor
-from auth import session_check
+from auth import session_check, permission_check
 import process_request
 
 bp = Blueprint('configuracion', __name__, url_prefix='/configuracion')
@@ -20,6 +20,14 @@ def configuracion():
 
 
     elif method == 'PATCH':
+        permissionError = permission_check('configuracion', 'modificar')
+
+        if permissionError:
+            response = make_response(jsonify(permissionError), permissionError.get('status', 400))
+            response.headers.set('Content-Type', 'application/json; charset=UTF-8')
+
+            return response
+
         cur = get_cursor()
         query = """UPDATE configuracion 
             SET nombre = %(nombre)s,

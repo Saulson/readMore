@@ -1,0 +1,77 @@
+<div class="container-fluid text-center">
+  <div class="form">
+    <div *ngIf="prestamo.id" class="form-group p-1 m-3">
+      <label class="p-2 m-3">{{prestamo.id}}</label>
+    </div>
+
+    <div class="form-group p-1 m-3">
+        <label class="p-2 m-3">Fecha Prestamo</label>
+        <input name="dp" [(ngModel)]="fecha_prestamo" ngbDatepicker 
+            [footerTemplate]="templateDatePrestamo" #d="ngbDatepicker" readonly>
+          <button class="btn calendar" (click)="d.toggle()" type="button"></button>
+    </div>
+
+    <ng-template #templateDatePrestamo>
+      <hr class="my-0">
+      <button class="btn btn-primary btn-sm m-2 float-left" (click)="fecha_prestamo = today; d.close()">Today</button>
+      <button class="btn btn-secondary btn-sm m-2 float-right" (click)="d.close()">Close</button>
+    </ng-template>
+
+    <div class="form-group p-1 m-3">
+        <label class="p-2 m-3">Fecha Devolución</label>
+        <input name="dp" [(ngModel)]="fecha_devolucion" ngbDatepicker 
+           [footerTemplate]="templateDateDevolucion" #dd="ngbDatepicker" readonly>
+        <button class="btn calendar" (click)="dd.toggle()" type="button"></button>
+    </div>
+
+    <ng-template #templateDateDevolucion>
+      <hr class="my-0">
+      <button class="btn btn-primary btn-sm m-2 float-left" (click)="fecha_devolucion = today; dd.close()">Today</button>
+      <button class="btn btn-secondary btn-sm m-2 float-right" (click)="dd.close()">Close</button>
+    </ng-template>
+    
+    <div class="form-group p-1 m-3">
+      <label class="p-2 m-3">Ejemplar</label>
+      <input id="ejemplar" type="number" [(ngModel)]="ejemplar" 
+            [ngbTypeahead]="searchEjemplar" placeholder="Ejemplar..." 
+            [inputFormatter]="formatterEjemplar"
+            [resultTemplate]="templateEjemplar"/>
+      <ng-template #templateEjemplar let-r="result" let-t="term">
+        <ngb-highlight [result]="r.id" [term]="t"></ngb-highlight>
+      </ng-template>
+    </div>
+
+    <div class="form-group p-1 m-3">
+      <label class="p-2 m-3">Lector</label>
+      <input id="lector" type="number" [(ngModel)]="lector" 
+            [ngbTypeahead]="searchUsuario" placeholder="Lector..." 
+            [inputFormatter]="formatterUsuario"
+            [resultTemplate]="templateUsuario"/>
+    </div>
+
+    <div class="form-group p-1 m-3">
+      <label class="p-2 m-3">Empleado</label>
+      <input id="empleado" type="number" [(ngModel)]="empleado" 
+            [ngbTypeahead]="searchUsuario" placeholder="Empleado..." 
+            [inputFormatter]="formatterUsuario"
+            [resultTemplate]="templateUsuario"/>
+    </div>
+
+    <ng-template #templateUsuario let-r="result" let-t="term">
+      <ngb-highlight [result]="r.id" [term]="t"></ngb-highlight>
+    </ng-template>
+
+    <div class="form-group p-1 m-3">
+      <button (click)="back()">Atrás</button>
+      <button (click)="submit()">
+        <div *ngIf="prestamo.id == null">
+          Crear
+        </div>
+        <div *ngIf="prestamo.id != null">
+          Actualizar
+        </div>
+      </button>
+    </div>
+  </div>
+
+</div>

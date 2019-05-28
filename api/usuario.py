@@ -3,7 +3,7 @@ import psycopg2
 from werkzeug.security import generate_password_hash
 
 from db import get_db, get_cursor
-from auth import session_check
+from auth import session_check, permission_check
 import process_request
 
 bp = Blueprint('usuario', __name__, url_prefix='/usuario')
@@ -42,6 +42,12 @@ def usuario():
 
 def put():
     data = {}
+
+    permissionError = permission_check('usuario', 'modificar')
+
+    if permissionError:
+        return permissionError
+
     args = dict(request.form)
 
     cur = get_cursor()
@@ -66,6 +72,12 @@ def changepass():
 
     if request.method == 'PATCH':
         cur = get_cursor()
+
+        permissionError = permission_check('usuario', 'modificar')
+
+        if permissionError:
+            return permissionError
+
         args = dict(request.form)
 
         query = """UPDATE usuario 

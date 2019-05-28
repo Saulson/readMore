@@ -35,11 +35,14 @@ import { LoginComponent } from './components/login/login.component';
 
 import { ModificarPassComponent } from './components/modificar-pass/modificar-pass.component';
 
+import { PermisoComponent } from './components/permiso/permiso.component';
+import { PermisoDetailComponent } from './components/permiso-detail/permiso-detail.component';
+
 import { PersonaComponent } from './components/persona/persona.component';
 import { PersonaDetailComponent } from './components/persona-detail/persona-detail.component';
 
-import { PermisoComponent } from './components/permiso/permiso.component';
-import { PermisoDetailComponent } from './components/permiso-detail/permiso-detail.component';
+import { PrestamoComponent } from './components/prestamo/prestamo.component';
+import { PrestamoDetailComponent } from './components/prestamo-detail/prestamo-detail.component';
 
 import { UsuarioComponent } from './components/usuario/usuario.component';
 import { UsuarioDetailComponent } from './components/usuario-detail/usuario-detail.component';
@@ -98,9 +101,13 @@ const routes: Routes = [
   { path: 'permiso-detail/:id', component: PermisoDetailComponent },
   { path: 'permiso-detail', component: PermisoDetailComponent },
 
-  { path: 'persona', component: PersonaComponent},
+  { path: 'persona', component: PersonaComponent },
   { path: 'persona-detail/:id', component: PersonaDetailComponent },
   { path: 'persona-detail', component: PersonaDetailComponent },
+
+  { path: 'prestamo', component: PrestamoComponent },
+  { path: 'prestamo-detail/:id', component: PrestamoDetailComponent },
+  { path: 'prestamo-detail', component: PrestamoDetailComponent },
 
   { path: 'usuario', component: UsuarioComponent },
   { path: 'usuario-detail/:id', component: UsuarioDetailComponent },

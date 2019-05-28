@@ -53,6 +53,13 @@ export class BaseService {
     );
   }
 
+  public getByIDMap(id: String): Observable<Request> {
+    return this.http.get<Request>(this.url + this.toGETRequest(5, 1, ['id'], {'id': id})).pipe(
+      map(data => data.data),
+      catchError(this.handleError<Request>({data: null, status: 400}))
+    );
+  }
+
   public getByNombre(nombre: String): Observable<Request> {
     return this.http.get<Request>(this.url + this.toGETRequest(5, 1, ['id', 'nombre'], {'nombre': nombre})).pipe(
       map(data => data.data),
@@ -97,7 +104,7 @@ export class BaseService {
         this.message.showMessage('Error', "API Is Down");
       }
       else if(error.status == 401) {
-        this.message.showMessage('Error', 'Operacion no autorizada', 
+        this.message.showMessage('Operación no Autorizada', error.error.error, 
           true).subscribe(_ => {
             this.location.go("/");
             window.location.reload();

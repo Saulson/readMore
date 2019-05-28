@@ -3,8 +3,17 @@ import psycopg2
 from flask import jsonify, make_response, request
 
 from db import get_cursor
+from auth import permission_check
 
 def count(table_name):
+    permissionError = permission_check(table_name, 'mostrar')
+
+    if permissionError:
+        response = make_response(jsonify(permissionError), permissionError.get('status', 400))
+        response.headers.set('Content-Type', 'application/json; charset=UTF-8')
+
+        return response
+
     data = {}
     cur = get_cursor()
     query = "SELECT COUNT(*) FROM %s" % table_name
@@ -30,6 +39,11 @@ def get(table_name):
             status=400
         )
         return data
+
+    permissionError = permission_check(table_name, 'mostrar')
+
+    if permissionError:
+        return permissionError
 
     cur = get_cursor()
     args = dict(request.args)
@@ -93,6 +107,11 @@ def put(table_name, fields):
         )
         return data
 
+    permissionError = permission_check(table_name, 'crear')
+
+    if permissionError:
+        return permissionError
+
     cur = get_cursor()
     query = "INSERT INTO %s (" % table_name
 
@@ -125,6 +144,11 @@ def patch(table_name, fields):
         )
         return data
 
+    permissionError = permission_check(table_name, 'modificar')
+
+    if permissionError:
+        return permissionError
+
     cur = get_cursor()
     query = "UPDATE %s SET " % table_name
 
@@ -151,6 +175,11 @@ def delete(table_name):
             status=400
         )
         return data
+
+    permissionError = permission_check(table_name, 'eliminar')
+
+    if permissionError:
+        return permissionError
 
     cur = get_cursor()
     query = "DELETE FROM %s WHERE " % table_name

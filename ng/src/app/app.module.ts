@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule }  from '@angular/common/http';
-import { NgbDropdownModule, NgbPaginationModule, NgbTypeaheadModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbDatepickerModule, NgbDropdownModule, NgbPaginationModule, NgbTypeaheadModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { AppRoutingModule } from './app-routing.module';
 
@@ -38,6 +38,8 @@ import { LibroComponent } from './components/libro/libro.component';
 import { LibroDetailComponent } from './components/libro-detail/libro-detail.component';
 import { EjemplarComponent } from './components/ejemplar/ejemplar.component';
 import { EjemplarDetailComponent } from './components/ejemplar-detail/ejemplar-detail.component';
+import { PrestamoComponent } from './components/prestamo/prestamo.component';
+import { PrestamoDetailComponent } from './components/prestamo-detail/prestamo-detail.component';
 
 @NgModule({
   declarations: [
@@ -72,13 +74,16 @@ import { EjemplarDetailComponent } from './components/ejemplar-detail/ejemplar-d
     LibroComponent,
     LibroDetailComponent,
     EjemplarComponent,
-    EjemplarDetailComponent
+    EjemplarDetailComponent,
+    PrestamoComponent,
+    PrestamoDetailComponent
   ],
   imports: [
     AppRoutingModule,
     BrowserModule,
     FormsModule,
     HttpClientModule,
+    NgbDatepickerModule,
     NgbDropdownModule,
     NgbPaginationModule,
     NgbTypeaheadModule
