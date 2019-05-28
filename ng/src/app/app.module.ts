@@ -29,6 +29,8 @@ import { EstadoDetailComponent } from './components/estado-detail/estado-detail.
 import { PermisoComponent } from './components/permiso/permiso.component';
 import { PermisoDetailComponent } from './components/permiso-detail/permiso-detail.component';
 import { ConfiguracionComponent } from './components/configuracion/configuracion.component';
+import { PersonaComponent } from './components/persona/persona.component';
+import { PersonaDetailComponent } from './components/persona-detail/persona-detail.component';
 
 @NgModule({
   declarations: [
@@ -54,7 +56,9 @@ import { ConfiguracionComponent } from './components/configuracion/configuracion
     EstadoDetailComponent,
     PermisoComponent,
     PermisoDetailComponent,
-    ConfiguracionComponent
+    ConfiguracionComponent,
+    PersonaComponent,
+    PersonaDetailComponent
   ],
   imports: [
     AppRoutingModule,

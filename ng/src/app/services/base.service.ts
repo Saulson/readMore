@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Location } from '@angular/common';
 import { Observable, of } from 'rxjs';
-import { catchError, tap } from 'rxjs/operators';
+import { catchError, tap, map } from 'rxjs/operators';
 
 import { Request } from '../models/request';
 import { MessageService } from './message.service';
@@ -49,6 +49,13 @@ export class BaseService {
 
     return this.http.get<Request>(this.url + "?id=" + id).pipe(
       tap(_ => this.message.close(true)),
+      catchError(this.handleError<Request>({data: null, status: 400}))
+    );
+  }
+
+  public getByNombre(nombre: String): Observable<Request> {
+    return this.http.get<Request>(this.url + this.toGETRequest(5, 1, ['id', 'nombre'], {'nombre': nombre})).pipe(
+      map(data => data.data),
       catchError(this.handleError<Request>({data: null, status: 400}))
     );
   }

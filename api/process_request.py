@@ -56,6 +56,12 @@ def get(table_name):
         if keys:
             query += "WHERE "
             for key in keys:
+                try:
+                    int(args[key])
+                except ValueError:
+                    query += key + " ilike %(" + key + ")s AND "
+                    args[key] = '%' + args[key] + '%'
+                else:
                     query += key + " = %(" + key + ")s AND "
 
             query = query[:-4]

@@ -1,0 +1,76 @@
+<div class="container-fluid text-center">
+  <div class="form">
+    <div class="form-group p-1 m-3">
+      <label class="p-2 m-3">Nombre</label>
+      <input id="nombre" class="p-2 m-3" (keyup.enter)="submit()"
+            [(ngModel)]="persona.nombre"/>
+    </div>
+
+    <div class="form-group p-1 m-3">
+      <label class="p-2 m-3">Apellido Paterno</label>
+      <input id="apellidop" class="p-2 m-3" (keyup.enter)="submit()"
+          [(ngModel)]="persona.apeidop"/>
+    </div>
+
+    <div class="form-group p-1 m-3">
+      <label class="p-2 m-3">Apellido Materno</label>
+      <input id="apellidom" class="p-2 m-3" (keyup.enter)="submit()"
+          [(ngModel)]="persona.apeidom"/>
+    </div>
+
+    <div class="form-group p-1 m-3">
+      <label class="p-2 m-3">Correo</label>
+      <input id="correo" class="p-2 m-3" (keyup.enter)="submit()"
+          [(ngModel)]="persona.correo"/>
+    </div>
+
+    <div class="form-group p-1 m-3">
+      <label class="p-2 m-3">Teléfono</label>
+      <input id="telefono" class="p-2 m-3" (keyup.enter)="submit()"
+          [(ngModel)]="persona.telefono"/>
+    </div>
+
+    <div class="form-group p-1 m-3">
+      <label class="p-2 m-3">Número</label>
+      <input id="numero" class="p-2 m-3" (keyup.enter)="submit()"
+          [(ngModel)]="persona.numero" type="number"/>
+    </div>
+
+    <div class="form-group p-1 m-3">
+      <label class="p-2 m-3">Calle</label>
+      <input id="calle" type="text" [(ngModel)]="calle" 
+            [ngbTypeahead]="searchCalle" placeholder="Calle..." 
+            [inputFormatter]="formatterCalle"
+            [resultTemplate]="templateCalle"/>
+      <span *ngIf="buscandocalle">buscando...</span>
+      <ng-template #templateCalle let-r="result" let-t="term">
+        <ngb-highlight [result]="r.nombre" [term]="t"></ngb-highlight>
+      </ng-template>
+    </div>
+
+    <div class="form-group p-1 m-3">
+      <label class="p-2 m-3">Colonia</label>
+      <input id="colonia" type="text" [(ngModel)]="colonia" 
+            [ngbTypeahead]="searchColonia" placeholder="Colonia..." 
+            [inputFormatter]="formatterColonia"
+            [resultTemplate]="templateColonia"/>
+      <span *ngIf="buscandocalle">buscando...</span>
+      <ng-template #templateColonia let-r="result" let-t="term">
+        <ngb-highlight [result]="r.nombre" [term]="t"></ngb-highlight>
+      </ng-template>
+    </div>
+
+    <div class="form-group p-1 m-3">
+      <button (click)="back()">Atrás</button>
+      <button (click)="submit()">
+        <div *ngIf="persona.id == null">
+          Crear
+        </div>
+        <div *ngIf="persona.id != null">
+          Actualizar
+        </div>
+      </button>
+    </div>
+  </div>
+
+</div>

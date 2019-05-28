@@ -107,7 +107,7 @@ def img(model, field, res_id):
 
     return response
 
-@bp.route('tables', methods=('GET',))
+@bp.route('/tables', methods=('GET',))
 @session_check
 def tables():
     data = {}

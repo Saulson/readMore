@@ -58,7 +58,7 @@ export class PermisoDetailComponent implements OnInit {
         else {
           //FIXME no se aprecia el mensaje porque se carga primero el menu 
           this.subscription = this.message.showMessage("Error", 
-          "La editorial con el id " + id + " no existe", 
+          "El permiso con el id " + id + " no existe", 
           true).subscribe(_ => this.location.back() );
         }
       });

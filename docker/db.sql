@@ -24,17 +24,17 @@ CREATE TABLE persona (
     id                  INT NOT NULL 
         PRIMARY KEY DEFAULT nextval('persona_id_seq'),
     nombre              VARCHAR NOT NULL,
-    apeidoM             VARCHAR,
-    apeidoP             VARCHAR,
+    apeidoM             VARCHAR DEFAULT '',
+    apeidoP             VARCHAR DEFAULT '',
     correo              VARCHAR NOT NULL,
-    telefono            VARCHAR,
+    telefono            VARCHAR DEFAULT '',
     id_colonia          INT
         REFERENCES colonia(id)
         ON DELETE RESTRICT,
     id_calle            INT
         REFERENCES calle(id) 
         ON DELETE RESTRICT,
-    numero              INT
+    numero              INT DEFAULT 0
 );
 
 CREATE SEQUENCE permiso_id_seq;
@@ -47,7 +47,7 @@ CREATE TABLE permiso (
     eliminar            BOOLEAN NOT NULL DEFAULT FALSE,
     condicion           JSON NOT NULL DEFAULT '{}',
     descripcion         VARCHAR NOT NULL,
-    nombre              VARCHAR NOT NULL,
+    nombre              VARCHAR NOT NULL
 );
 
 CREATE SEQUENCE grupo_permiso_id_seq;
@@ -222,9 +222,9 @@ VALUES
     ('Mantenimiento', TRUE),
     ('Disponible', FALSE);
 
-INSERT INTO persona (nombre, correo) 
+INSERT INTO persona (nombre, apeidop, apeidom, correo, telefono, numero) 
 VALUES 
-    ('Administrador', 'admin@localhost.com');
+    ('Administrador', '', '', 'admin@localhost.com', '', 0);
 
 INSERT INTO permiso(crear, modificar, mostrar, eliminar, descripcion, nombre) 
 VALUES
@@ -245,9 +245,9 @@ VALUES
     (TRUE, TRUE, TRUE, TRUE, 'CRUD Ejemplar', 'ejemplar'),
     (TRUE, TRUE, TRUE, TRUE, 'CRUD Prestamo', 'prestamo'),
     (TRUE, TRUE, TRUE, TRUE, 'CRUD Devolucion', 'devolucion'),
-    (TRUE, TRUE, TRUE, TRUE, 'CRUD Multa', 'multa');
+    (TRUE, TRUE, TRUE, TRUE, 'CRUD Multa', 'multa'),
+    (FALSE, TRUE, FALSE, TRUE, 'Modificar Configuración', 'configuracion');
     /*(TRUE, TRUE, TRUE, TRUE, 'CRUD ', ''),
-    (TRUE, TRUE, TRUE, TRUE, 'CRUD ', ''),
     (TRUE, TRUE, TRUE, TRUE, 'CRUD ', ''),
     (TRUE, TRUE, TRUE, TRUE, 'CRUD ', ''),
     (TRUE, TRUE, TRUE, TRUE, 'CRUD ', ''),
@@ -277,7 +277,8 @@ VALUES
     (1, 15),
     (1, 16),
     (1, 17),
-    (1, 18);
+    (1, 18),
+    (1, 19);
 
 INSERT INTO usuario (contrasena, id_persona, id_grupo_permiso) 
 VALUES 

@@ -27,11 +27,14 @@ import { GrupoPermisoDetailComponent } from './components/grupo-permiso-detail/g
 import { IndexComponent } from './components/index/index.component';
 import { LoginComponent } from './components/login/login.component';
 
-import { ZonaComponent } from './components/zona/zona.component';
-import { ZonaDetailComponent } from './components/zona-detail/zona-detail.component';
-
 import { PermisoComponent } from './components/permiso/permiso.component';
 import { PermisoDetailComponent } from './components/permiso-detail/permiso-detail.component';
+
+import { PersonaComponent } from './components/persona/persona.component';
+import { PersonaDetailComponent } from './components/persona-detail/persona-detail.component';
+
+import { ZonaComponent } from './components/zona/zona.component';
+import { ZonaDetailComponent } from './components/zona-detail/zona-detail.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'index', pathMatch: 'full' },
@@ -69,6 +72,10 @@ const routes: Routes = [
   { path: 'index', component: IndexComponent},
 
   { path: 'login', component: LoginComponent },
+
+  { path: 'persona', component: PersonaComponent},
+  { path: 'persona-detail/:id', component: PersonaDetailComponent },
+  { path: 'persona-detail', component: PersonaDetailComponent },
 
   { path: 'permiso', component: PermisoComponent },
   { path: 'permiso-detail/:id', component: PermisoDetailComponent },

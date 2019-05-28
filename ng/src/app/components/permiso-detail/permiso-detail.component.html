@@ -5,7 +5,6 @@
       <input
         id="typeahead-focus"
         type="text"
-        class="form-control"
         [(ngModel)]="permiso.nombre"
         [ngbTypeahead]="search"
         (focus)="focus$.next($event.target.value)"
