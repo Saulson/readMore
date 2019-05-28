@@ -7,6 +7,7 @@ import categoria
 import colonia
 import configuracion
 import editorial
+import ejemplar
 import estado
 import grupo_permiso
 import libro
@@ -30,6 +31,7 @@ api.register_blueprint(categoria.bp)
 api.register_blueprint(colonia.bp)
 api.register_blueprint(configuracion.bp)
 api.register_blueprint(editorial.bp)
+api.register_blueprint(ejemplar.bp)
 api.register_blueprint(estado.bp)
 api.register_blueprint(grupo_permiso.bp)
 api.register_blueprint(libro.bp)

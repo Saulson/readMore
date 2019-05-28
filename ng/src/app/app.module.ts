@@ -36,6 +36,8 @@ import { UsuarioDetailComponent } from './components/usuario-detail/usuario-deta
 import { ModificarPassComponent } from './components/modificar-pass/modificar-pass.component';
 import { LibroComponent } from './components/libro/libro.component';
 import { LibroDetailComponent } from './components/libro-detail/libro-detail.component';
+import { EjemplarComponent } from './components/ejemplar/ejemplar.component';
+import { EjemplarDetailComponent } from './components/ejemplar-detail/ejemplar-detail.component';
 
 @NgModule({
   declarations: [
@@ -68,7 +70,9 @@ import { LibroDetailComponent } from './components/libro-detail/libro-detail.com
     UsuarioDetailComponent,
     ModificarPassComponent,
     LibroComponent,
-    LibroDetailComponent
+    LibroDetailComponent,
+    EjemplarComponent,
+    EjemplarDetailComponent
   ],
   imports: [
     AppRoutingModule,

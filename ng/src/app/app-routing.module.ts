@@ -18,6 +18,9 @@ import { ConfiguracionComponent } from './components/configuracion/configuracion
 import { EditorialComponent } from './components/editorial/editorial.component';
 import { EditorialDetailComponent } from './components/editorial-detail/editorial-detail.component';
 
+import { EjemplarComponent } from './components/ejemplar/ejemplar.component';
+import { EjemplarDetailComponent } from './components/ejemplar-detail/ejemplar-detail.component';
+
 import { EstadoComponent } from './components/estado/estado.component';
 import { EstadoDetailComponent } from './components/estado-detail/estado-detail.component';
 
@@ -68,6 +71,10 @@ const routes: Routes = [
   { path: 'editorial', component: EditorialComponent },
   { path: 'editorial-detail/:id', component: EditorialDetailComponent },
   { path: 'editorial-detail', component: EditorialDetailComponent },
+
+  { path: 'ejemplar', component: EjemplarComponent },
+  { path: 'ejemplar-detail/:id', component: EjemplarDetailComponent },
+  { path: 'ejemplar-detail', component: EjemplarDetailComponent },
 
   { path: 'estado', component: EstadoComponent },
   { path: 'estado-detail/:id', component: EstadoDetailComponent },

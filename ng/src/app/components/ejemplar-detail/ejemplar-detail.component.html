@@ -1,0 +1,54 @@
+<div class="container-fluid text-center">
+  <div class="form">
+    <div *ngIf="ejemplar.id" class="form-group p-1 m-3">
+      <label class="p-2 m-3">{{ejemplar.id}}</label>
+    </div>
+
+    <div class="form-group p-1 m-3">
+      <label class="p-2 m-3">Número Ejemplar</label>
+      <input id="num_ejemplar" class="p-2 m-3" (keyup.enter)="submit()"
+          [(ngModel)]="ejemplar.num_ejemplar" type="number"/>
+    </div>
+
+    <div class="form-group p-1 m-3">
+      <label class="align-top p-2 m-3">Comentario</label>
+      <textarea id="comentario" class="p-2 m-3" (keyup.enter)="submit()"
+          [(ngModel)]="ejemplar.comentario"></textarea>
+    </div>
+
+    <div class="form-group p-1 m-3">
+      <label class="p-2 m-3">Libro</label>
+      <input id="libro" type="text" [(ngModel)]="libro" 
+            [ngbTypeahead]="searchLibro" placeholder="Libro..." 
+            [inputFormatter]="formatterLibro"
+            [resultTemplate]="templateLibro"/>
+      <ng-template #templateLibro let-r="result" let-t="term">
+        <ngb-highlight [result]="r.titulo" [term]="t"></ngb-highlight>
+      </ng-template>
+    </div>
+
+    <div class="form-group p-1 m-3">
+      <label class="p-2 m-3">Estado</label>
+      <input id="estado" type="text" [(ngModel)]="estado" 
+            [ngbTypeahead]="searchEstado" placeholder="Estado..." 
+            [inputFormatter]="formatterEstado"
+            [resultTemplate]="templateEstado"/>
+      <ng-template #templateEstado let-r="result" let-t="term">
+        <ngb-highlight [result]="r.descripcion" [term]="t"></ngb-highlight>
+      </ng-template>
+    </div>
+
+    <div class="form-group p-1 m-3">
+      <button (click)="back()">Atrás</button>
+      <button (click)="submit()">
+        <div *ngIf="ejemplar.id == null">
+          Crear
+        </div>
+        <div *ngIf="ejemplar.id != null">
+          Actualizar
+        </div>
+      </button>
+    </div>
+  </div>
+
+</div>
