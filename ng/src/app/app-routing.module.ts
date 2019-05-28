@@ -24,6 +24,9 @@ import { EstadoDetailComponent } from './components/estado-detail/estado-detail.
 import { GrupoPermisoComponent } from './components/grupo-permiso/grupo-permiso.component';
 import { GrupoPermisoDetailComponent } from './components/grupo-permiso-detail/grupo-permiso-detail.component';
 
+import { LibroComponent } from './components/libro/libro.component';
+import { LibroDetailComponent } from './components/libro-detail/libro-detail.component';
+
 import { IndexComponent } from './components/index/index.component';
 import { LoginComponent } from './components/login/login.component';
 
@@ -73,6 +76,10 @@ const routes: Routes = [
   { path: 'grupo permiso', component: GrupoPermisoComponent },
   { path: 'grupo permiso-detail/:id', component: GrupoPermisoDetailComponent },
   { path: 'grupo permiso-detail', component: GrupoPermisoDetailComponent },
+
+  { path: 'libro', component: LibroComponent },
+  { path: 'libro-detail/:id', component: LibroDetailComponent },
+  { path: 'libro-detail', component: LibroDetailComponent },
 
   { path: 'index', component: IndexComponent},
 

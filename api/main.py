@@ -9,6 +9,7 @@ import configuracion
 import editorial
 import estado
 import grupo_permiso
+import libro
 import permiso
 import persona
 import tools
@@ -31,6 +32,7 @@ api.register_blueprint(configuracion.bp)
 api.register_blueprint(editorial.bp)
 api.register_blueprint(estado.bp)
 api.register_blueprint(grupo_permiso.bp)
+api.register_blueprint(libro.bp)
 api.register_blueprint(persona.bp)
 api.register_blueprint(permiso.bp)
 api.register_blueprint(tools.bp)

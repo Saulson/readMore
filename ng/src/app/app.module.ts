@@ -34,6 +34,8 @@ import { PersonaDetailComponent } from './components/persona-detail/persona-deta
 import { UsuarioComponent } from './components/usuario/usuario.component';
 import { UsuarioDetailComponent } from './components/usuario-detail/usuario-detail.component';
 import { ModificarPassComponent } from './components/modificar-pass/modificar-pass.component';
+import { LibroComponent } from './components/libro/libro.component';
+import { LibroDetailComponent } from './components/libro-detail/libro-detail.component';
 
 @NgModule({
   declarations: [
@@ -64,7 +66,9 @@ import { ModificarPassComponent } from './components/modificar-pass/modificar-pa
     PersonaDetailComponent,
     UsuarioComponent,
     UsuarioDetailComponent,
-    ModificarPassComponent
+    ModificarPassComponent,
+    LibroComponent,
+    LibroDetailComponent
   ],
   imports: [
     AppRoutingModule,

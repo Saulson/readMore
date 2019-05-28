@@ -1,12 +1,12 @@
 <div class="container-fluid text-center">
-  <button routerLink="/zona-detail" class="m-4">Crear</button>
+  <button routerLink="/libro-detail" class="m-4">Crear</button>
 
   <ul class="list-group mx-auto d-block w-75 p-2">
-    <li *ngFor="let zona of zonas"
+    <li *ngFor="let libro of libros" 
       class="list-group-item d-flex justify-content-between align-items-center">
-      <img width="100" height="100" src="/api/tool/img/zona/foto/{{zona.id}}">
-      <div class="li" routerLink="/zona-detail/{{zona.id}}">{{zona.nombre}}</div>
-      <span (click)="delete(zona)" class="badge badge-danger badge-pill">X</span>
+      <img width="100" height="100" src="/api/tool/img/libro/portada/{{libro.id}}"/>
+      <div class="li" routerLink="/libro-detail/{{libro.id}}">{{libro.titulo}}</div>
+      <span (click)="delete(libro)" class="badge badge-danger badge-pill">X</span>
     </li>
   </ul>
 
@@ -21,5 +21,4 @@
     [boundaryLinks]="true"
     (pageChange)="changePage($event)">
   </ngb-pagination>
-
 </div>

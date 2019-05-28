@@ -96,7 +96,7 @@ export class UsuarioDetailComponent implements OnInit {
       this.service.update(this.usuario).subscribe(data => {
         if(data.status == 200) {
           this.subscription = this.message.showMessage("Info", 
-            "Persona Actualizada", true).subscribe( _ => this.location.back() );
+            "Usuario Actualizado", true).subscribe( _ => this.location.back() );
         }
       });
     }

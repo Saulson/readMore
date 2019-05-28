@@ -1,0 +1,70 @@
+<div class="container-fluid text-center">
+  <div class="form">
+    <div class="form-group p-1 m-3">
+      <label class="p-2 m-3">Titulo</label>
+      <input id="titulo" class="p-2 m-3" (keyup.enter)="submit()"
+          [(ngModel)]="libro.titulo"/>
+    </div>
+
+    <div class="form-group p-1 m-3">
+      <label class="p-2 m-3">ISBN</label>
+      <input id="isbn" class="p-2 m-3" (keyup.enter)="submit()"
+          [(ngModel)]="libro.isbn"/>
+    </div>
+
+    <div class="form-group p-1 m-3">
+      <label class="p-2 m-3">Portada</label>
+      <img width="100" height="100" src="/api/tool/img/libro/portada/{{libro.id}}"/>
+    </div>
+
+    <div class="form-group p-1 m-3">
+      <input type='file' accept="image/jpeg,image/jpg,image/png" (change)='openFile($event)'/>
+    </div>
+
+    <div class="form-group p-1 m-3">
+      <label class="p-2 m-3">Categoría</label>
+      <input id="categoria" type="text" [(ngModel)]="categoria" 
+            [ngbTypeahead]="searchCategoria" placeholder="Categoría..." 
+            [inputFormatter]="formatterCategoria"
+            [resultTemplate]="templateCategoria"/>
+      <ng-template #templateCategoria let-r="result" let-t="term">
+        <ngb-highlight [result]="r.nombre" [term]="t"></ngb-highlight>
+      </ng-template>
+    </div>
+
+    <div class="form-group p-1 m-3">
+      <label class="p-2 m-3">Editorial</label>
+      <input id="editorial" type="text" [(ngModel)]="editorial" 
+            [ngbTypeahead]="searchEditorial" placeholder="Editorial..." 
+            [inputFormatter]="formatterEditorial"
+            [resultTemplate]="templateEditorial"/>
+      <ng-template #templateEditorial let-r="result" let-t="term">
+        <ngb-highlight [result]="r.nombre" [term]="t"></ngb-highlight>
+      </ng-template>
+    </div>
+
+    <div class="form-group p-1 m-3">
+      <label class="p-2 m-3">Zona</label>
+      <input id="zona" type="text" [(ngModel)]="zona" 
+            [ngbTypeahead]="searchZona" placeholder="Zona..." 
+            [inputFormatter]="formatterZona"
+            [resultTemplate]="templateZona"/>
+      <ng-template #templateZona let-r="result" let-t="term">
+        <ngb-highlight [result]="r.nombre" [term]="t"></ngb-highlight>
+      </ng-template>
+    </div>
+
+    <div class="form-group p-1 m-3">
+      <button (click)="back()">Atrás</button>
+      <button (click)="submit()">
+        <div *ngIf="libro.id == null">
+          Crear
+        </div>
+        <div *ngIf="libro.id != null">
+          Actualizar
+        </div>
+      </button>
+    </div>
+  </div>
+
+</div>
